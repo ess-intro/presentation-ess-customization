@@ -1,0 +1,13 @@
+#+TITLE: Customizing and extending Emacs Speaks Statistics
+#+AUTHOR: Frédéric Santos
+
+* Goals
+- Showing how to customize ESS to fit your own needs and habits
+- Helping newcomers and beginners to have a more friendly and efficient setup
+- Helping users migrating from other IDEs to keep behaviours and habits they are used to
+- Showcasing some other Emacs packages that play well with ESS and may improve your coding experience
+
+* TODO Ressources [0/0]
+- [ ] Raw org file: soon.
+- [ ] Slides: soon.
+- [ ] Video tutorial: soon.
