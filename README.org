@@ -8,6 +8,6 @@
 - Showcasing some other Emacs packages that play well with ESS and may improve your coding experience
 
 ** TODO Ressources [0/0]
-- [ ] Raw org file: soon.
-- [ ] Slides: soon.
+- [ ] [[https://github.com/ess-intro/presentation-ess-customization/blob/main/slides/ess-customization.org][Raw org file]]: WIP.
+- [ ] [[https://github.com/ess-intro/presentation-ess-customization/blob/main/slides/ess-customization.pdf][Slides]]: WIP.
 - [ ] Video tutorial: soon.
