@@ -1,4 +1,4 @@
-% Created 2021-01-11 lun. 14:15
+% Created 2021-01-11 lun. 17:57
 % Intended LaTeX compiler: pdflatex
 \documentclass[presentation]{beamer}
 \usepackage[utf8]{inputenc}
@@ -20,24 +20,24 @@
 \usepackage[english]{babel}
 \usepackage{lmodern}
 \usepackage[matha,mathb]{mathabx}
-\usepackage{mdframed}
 \usepackage{subfig}
+\usepackage{mdframed}
 \usepackage{minted}
-\mdfdefinestyle{boxstyle}{leftmargin=0cm,rightmargin=0cm,skipabove=2mm,skipbelow=2mm,innertopmargin=1mm,innerbottommargin=1mm,innerleftmargin=0cm,innerrightmargin=0cm,roundcorner=8pt,backgroundcolor=gray!15,linecolor=blue,linewidth=1pt}
-\BeforeBeginEnvironment{minted}{\begin{mdframed}[style=boxstyle]}
-\AfterEndEnvironment{minted}{\end{mdframed}}
+\usemintedstyle{friendly} % set style if needed, see https://frama.link/jfRr8Lpj
+\mdfdefinestyle{mystyle}{linecolor=gray!30,backgroundcolor=gray!30}
+\BeforeBeginEnvironment{minted}{%
+\begin{mdframed}[style=mystyle]}
+\AfterEndEnvironment{minted}{%
+\end{mdframed} \medskip}
 \usepackage{float}
 \usepackage{url}
-\usepackage{etoolbox}
-\makeatletter
-\preto{\@verbatim}{\topsep=1pt \partopsep=1pt }
-\makeatother
-\definecolor{vrbcolor}{rgb}{0.8, 0.8, 1.0}
-\let\oldv\verbatim
-\let\oldendv\endverbatim
-\def\verbatim{\par\setbox0\vbox\bgroup\oldv}
-\def\endverbatim{\oldendv\egroup\fboxsep0pt \noindent\colorbox{vrbcolor}{\usebox0}\par}
-\renewcommand\mathfamilydefault{\rmdefault}
+%% Formatting of verbatim outputs (i.e., outputs of R results):
+\DefineVerbatimEnvironment{verbatim}{Verbatim}{%
+fontsize = \small,
+frame = leftline,
+formatcom = {\color{gray!97}}
+}
+\setbeamertemplate{caption}[numbered]
 %% Perso colors
 \definecolor{PalePurple}{RGB}{127, 90, 182}
 \definecolor{DarkPurple}{RGB}{98, 36, 134}
@@ -80,26 +80,69 @@
 
 \maketitle
 
+\section{Introductory words}
+\label{sec:org19b3713}
+\subsection{Filling your Emacs init file}
+\label{sec:orgd7c8dcc}
+\begin{frame}[label={sec:orgf1d6ad4},fragile]{A word about \texttt{use-package}}
+ In this document, several pieces of Emacs Lisp code will be proposed so that you can use them in your init file.
+
+It is assumed that you use \href{https://jwiegley.github.io/use-package/}{\texttt{use-package}} for your init file: the Emacs Lisp code can be adapted in a straightforward manner if you do not use it.
+
+As a reminder, this is the minimal code to add in your init file so as to use \texttt{use-package}, once it has been installed:
+
+\begin{minted}[]{common-lisp}
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+(eval-when-compile
+  (require 'use-package))
+\end{minted}
+\end{frame}
 
 \section{ESS customization}
-\label{sec:org922d0a0}
+\label{sec:org1981b77}
 \subsection{Visibility of evaluation}
-\label{sec:org6b800e4}
+\label{sec:orgd32abb0}
 \subsection{Window management}
-\label{sec:orgbe296f9}
+\label{sec:org22800c1}
 \subsection{Syntax highlighting}
-\label{sec:orgddf22d1}
+\label{sec:orgf5a5bd3}
 \subsection{Syntax checker}
-\label{sec:org44b0a54}
+\label{sec:orgb6db3bc}
 \subsection{Rdired buffers}
-\label{sec:orga00d20a}
+\label{sec:org98846b0}
 
 \section{Some useful Emacs packages}
-\label{sec:org1ae4bd4}
+\label{sec:org476d1c8}
 \subsection{company}
-\label{sec:org8f9531d}
+\label{sec:orgf8f9863}
 \subsection{company-quickhelp}
-\label{sec:orgf9d3bc7}
+\label{sec:org1d87260}
+\begin{frame}[fragile,allowframebreaks,label=]{Documentation popups}
+ \href{https://github.com/company-mode/company-quickhelp}{\texttt{company-quickhelp}} allows for documentation popups, e.g. to further describe function arguments.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{./images/company-quickhelp.png}
+\caption{Documentation popups with \texttt{company-quickhelp}.}
+\end{figure}
+
+The minimal elisp code to add to your init file is straightforward:
+
+\begin{minted}[]{common-lisp}
+(use-package company-quickhelp
+  :ensure t
+  :config
+  ;; Load company-quickhelp globally:
+  (company-quickhelp-mode)
+  ;; Time before display of documentation popup:
+  (setq company-quickhelp-delay 0.3))
+\end{minted}
+
+By default, the documentation popup is shown automatically. You can adjust the time before the popup shows up by customizing the variable \texttt{company-quickhelp-delay}.
+\end{frame}
+
 \subsection{yasnippet}
-\label{sec:org81dad7a}
+\label{sec:org5c3f02e}
 \end{document}
