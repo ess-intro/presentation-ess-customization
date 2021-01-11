@@ -1,0 +1,71 @@
+#+TITLE: Customizing and extending Emacs Speaks Statistics
+#+AUTHOR: Frédéric Santos
+#+EMAIL: frederic.santos@u-bordeaux.fr
+#+DATE: \today
+#+LANGUAGE: en
+#+OPTIONS: email:t toc:nil H:3 ^:nil
+#+startup: beamer
+#+LaTeX_CLASS: beamer
+#+LATEX_HEADER: \usetheme{CambridgeUS}
+#+LATEX_HEADER: \setbeamertemplate{navigation symbols}{} % pas de barre de navigation
+#+LATEX_HEADER: \usepackage[english]{babel}
+#+LATEX_HEADER: \usepackage{lmodern}
+#+LATEX_HEADER: \usepackage[matha,mathb]{mathabx}
+#+LATEX_HEADER: \usepackage{mdframed}
+#+LATEX_HEADER: \usepackage{subfig}
+#+LATEX_HEADER: \usepackage{minted}
+#+LATEX_HEADER: \mdfdefinestyle{boxstyle}{leftmargin=0cm,rightmargin=0cm,skipabove=2mm,skipbelow=2mm,innertopmargin=1mm,innerbottommargin=1mm,innerleftmargin=0cm,innerrightmargin=0cm,roundcorner=8pt,backgroundcolor=gray!15,linecolor=blue,linewidth=1pt}
+#+LATEX_HEADER: \BeforeBeginEnvironment{minted}{\begin{mdframed}[style=boxstyle]}
+#+LATEX_HEADER: \AfterEndEnvironment{minted}{\end{mdframed}}
+#+LATEX_HEADER: \usepackage{float}
+#+LATEX_HEADER: \usepackage{url}
+#+LATEX_HEADER: \usepackage{etoolbox}
+#+LATEX_HEADER: \makeatletter
+#+LATEX_HEADER: \preto{\@verbatim}{\topsep=1pt \partopsep=1pt }
+#+LATEX_HEADER: \makeatother
+#+LATEX_HEADER: \definecolor{vrbcolor}{rgb}{0.8, 0.8, 1.0}
+#+LATEX_HEADER: \let\oldv\verbatim
+#+LATEX_HEADER: \let\oldendv\endverbatim
+#+LATEX_HEADER: \def\verbatim{\par\setbox0\vbox\bgroup\oldv}
+#+LATEX_HEADER: \def\endverbatim{\oldendv\egroup\fboxsep0pt \noindent\colorbox{vrbcolor}{\usebox0}\par}
+#+LATEX_HEADER: \renewcommand\mathfamilydefault{\rmdefault}
+#+LATEX_HEADER: %% Perso colors
+#+LATEX_HEADER: \definecolor{PalePurple}{RGB}{127, 90, 182}
+#+LATEX_HEADER: \definecolor{DarkPurple}{RGB}{98, 36, 134}
+#+LATEX_HEADER: \definecolor{grey}{RGB}{51, 63, 72}
+#+LATEX_HEADER: \setbeamercolor{title}{fg=white, bg=DarkPurple}
+#+LATEX_HEADER: \setbeamercolor{frametitle}{fg=black}
+#+LATEX_HEADER: \setbeamercolor{structure}{fg=PalePurple}
+#+LATEX_HEADER: \setbeamercolor{section in head/foot}{fg=white, bg=PalePurple}
+#+LATEX_HEADER: \setbeamercolor{subsection in head/foot}{fg=DarkPurple}
+#+LATEX_HEADER: \setbeamercolor{title in head/foot}{fg=white, bg=DarkPurple}
+#+LATEX_HEADER: \setbeamercolor{date in head/foot}{fg=grey}
+#+LATEX_HEADER: %% Structure of a slide :
+#+LATEX_HEADER: \setbeamertemplate{footline}
+#+LATEX_HEADER: {
+#+LATEX_HEADER: \leavevmode%
+#+LATEX_HEADER: \hbox{%
+#+LATEX_HEADER: \begin{beamercolorbox}[wd=.75\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+#+LATEX_HEADER:\usebeamerfont{author in head/foot}\inserttitle
+#+LATEX_HEADER:\end{beamercolorbox}%
+#+LATEX_HEADER: %\begin{beamercolorbox}[wd=.3\paperwidth,ht=2.25ex,dp=1ex,center]{section in head/foot}%
+#+LATEX_HEADER: %\usebeamerfont{title in head/foot}\insertsection
+#+LATEX_HEADER: %\end{beamercolorbox}%
+#+LATEX_HEADER: \begin{beamercolorbox}[wd=.25\paperwidth,ht=2.25ex,dp=1ex,center]{date in head/foot}%
+#+LATEX_HEADER: \insertframenumber{} / \inserttotalframenumber\hspace*{1ex}
+#+LATEX_HEADER:  \end{beamercolorbox}}%
+#+LATEX_HEADER:  \vskip0pt%
+#+LATEX_HEADER: }
+
+
+* ESS customization
+** Visibility of evaluation
+** Window management
+** Syntax highlighting
+** Syntax checker
+** Rdired buffers
+
+* Some useful Emacs packages
+** company
+** company-quickhelp
+** yasnippet

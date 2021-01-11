@@ -1,0 +1,105 @@
+% Created 2021-01-11 lun. 14:15
+% Intended LaTeX compiler: pdflatex
+\documentclass[presentation]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\usepackage{color}
+\usetheme{CambridgeUS}
+\setbeamertemplate{navigation symbols}{} % pas de barre de navigation
+\usepackage[english]{babel}
+\usepackage{lmodern}
+\usepackage[matha,mathb]{mathabx}
+\usepackage{mdframed}
+\usepackage{subfig}
+\usepackage{minted}
+\mdfdefinestyle{boxstyle}{leftmargin=0cm,rightmargin=0cm,skipabove=2mm,skipbelow=2mm,innertopmargin=1mm,innerbottommargin=1mm,innerleftmargin=0cm,innerrightmargin=0cm,roundcorner=8pt,backgroundcolor=gray!15,linecolor=blue,linewidth=1pt}
+\BeforeBeginEnvironment{minted}{\begin{mdframed}[style=boxstyle]}
+\AfterEndEnvironment{minted}{\end{mdframed}}
+\usepackage{float}
+\usepackage{url}
+\usepackage{etoolbox}
+\makeatletter
+\preto{\@verbatim}{\topsep=1pt \partopsep=1pt }
+\makeatother
+\definecolor{vrbcolor}{rgb}{0.8, 0.8, 1.0}
+\let\oldv\verbatim
+\let\oldendv\endverbatim
+\def\verbatim{\par\setbox0\vbox\bgroup\oldv}
+\def\endverbatim{\oldendv\egroup\fboxsep0pt \noindent\colorbox{vrbcolor}{\usebox0}\par}
+\renewcommand\mathfamilydefault{\rmdefault}
+%% Perso colors
+\definecolor{PalePurple}{RGB}{127, 90, 182}
+\definecolor{DarkPurple}{RGB}{98, 36, 134}
+\definecolor{grey}{RGB}{51, 63, 72}
+\setbeamercolor{title}{fg=white, bg=DarkPurple}
+\setbeamercolor{frametitle}{fg=black}
+\setbeamercolor{structure}{fg=PalePurple}
+\setbeamercolor{section in head/foot}{fg=white, bg=PalePurple}
+\setbeamercolor{subsection in head/foot}{fg=DarkPurple}
+\setbeamercolor{title in head/foot}{fg=white, bg=DarkPurple}
+\setbeamercolor{date in head/foot}{fg=grey}
+%% Structure of a slide :
+\setbeamertemplate{footline}
+{
+\leavevmode%
+\hbox{%
+\begin{beamercolorbox}[wd=.75\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+\usebeamerfont{author in head/foot}\inserttitle
+\end{beamercolorbox}%
+%\begin{beamercolorbox}[wd=.3\paperwidth,ht=2.25ex,dp=1ex,center]{section in head/foot}%
+%\usebeamerfont{title in head/foot}\insertsection
+%\end{beamercolorbox}%
+\begin{beamercolorbox}[wd=.25\paperwidth,ht=2.25ex,dp=1ex,center]{date in head/foot}%
+\insertframenumber{} / \inserttotalframenumber\hspace*{1ex}
+\end{beamercolorbox}}%
+\vskip0pt%
+}
+\usetheme{default}
+\author{Frédéric Santos\thanks{frederic.santos@u-bordeaux.fr}}
+\date{\today}
+\title{Customizing and extending Emacs Speaks Statistics}
+\hypersetup{
+ pdfauthor={Frédéric Santos},
+ pdftitle={Customizing and extending Emacs Speaks Statistics},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 27.1 (Org mode 9.4.4)}, 
+ pdflang={English}}
+\begin{document}
+
+\maketitle
+
+
+\section{ESS customization}
+\label{sec:org922d0a0}
+\subsection{Visibility of evaluation}
+\label{sec:org6b800e4}
+\subsection{Window management}
+\label{sec:orgbe296f9}
+\subsection{Syntax highlighting}
+\label{sec:orgddf22d1}
+\subsection{Syntax checker}
+\label{sec:org44b0a54}
+\subsection{Rdired buffers}
+\label{sec:orga00d20a}
+
+\section{Some useful Emacs packages}
+\label{sec:org1ae4bd4}
+\subsection{company}
+\label{sec:org8f9531d}
+\subsection{company-quickhelp}
+\label{sec:orgf9d3bc7}
+\subsection{yasnippet}
+\label{sec:org81dad7a}
+\end{document}
