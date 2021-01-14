@@ -1,4 +1,4 @@
-% Created 2021-01-11 lun. 17:57
+% Created 2021-01-14 jeu. 14:27
 % Intended LaTeX compiler: pdflatex
 \documentclass[presentation]{beamer}
 \usepackage[utf8]{inputenc}
@@ -26,9 +26,9 @@
 \usemintedstyle{friendly} % set style if needed, see https://frama.link/jfRr8Lpj
 \mdfdefinestyle{mystyle}{linecolor=gray!30,backgroundcolor=gray!30}
 \BeforeBeginEnvironment{minted}{%
-\begin{mdframed}[style=mystyle]}
+\small \begin{mdframed}[style=mystyle]}
 \AfterEndEnvironment{minted}{%
-\end{mdframed} \medskip}
+\end{mdframed} \medskip \normalsize}
 \usepackage{float}
 \usepackage{url}
 %% Formatting of verbatim outputs (i.e., outputs of R results):
@@ -49,6 +49,8 @@ formatcom = {\color{gray!97}}
 \setbeamercolor{subsection in head/foot}{fg=DarkPurple}
 \setbeamercolor{title in head/foot}{fg=white, bg=DarkPurple}
 \setbeamercolor{date in head/foot}{fg=grey}
+\setbeamercolor{block title}{fg=white, bg=DarkPurple}
+\setbeamercolor{block body}{bg=gray!20}
 %% Structure of a slide :
 \setbeamertemplate{footline}
 {
@@ -65,6 +67,8 @@ formatcom = {\color{gray!97}}
 \end{beamercolorbox}}%
 \vskip0pt%
 }
+\DeclareUnicodeCharacter{2514}{\mbox{\kern.23em \vrule height2.2exdepth-1.8ptwidth.4pt\vrule height2.2ptdepth-1.8ptwidth.23em}}
+\DeclareUnicodeCharacter{2500}{\mbox{\vrule height2.2ptdepth-1.8ptwidth.5em}}
 \usetheme{default}
 \author{Frédéric Santos\thanks{frederic.santos@u-bordeaux.fr}}
 \date{\today}
@@ -80,11 +84,12 @@ formatcom = {\color{gray!97}}
 
 \maketitle
 
+
 \section{Introductory words}
-\label{sec:org19b3713}
+\label{sec:org2429222}
 \subsection{Filling your Emacs init file}
-\label{sec:orgd7c8dcc}
-\begin{frame}[label={sec:orgf1d6ad4},fragile]{A word about \texttt{use-package}}
+\label{sec:orga9ce641}
+\begin{frame}[label={sec:org52751f2},fragile]{A word about \texttt{use-package}}
  In this document, several pieces of Emacs Lisp code will be proposed so that you can use them in your init file.
 
 It is assumed that you use \href{https://jwiegley.github.io/use-package/}{\texttt{use-package}} for your init file: the Emacs Lisp code can be adapted in a straightforward manner if you do not use it.
@@ -101,24 +106,24 @@ As a reminder, this is the minimal code to add in your init file so as to use \t
 \end{frame}
 
 \section{ESS customization}
-\label{sec:org1981b77}
+\label{sec:org22ba9a2}
 \subsection{Visibility of evaluation}
-\label{sec:orgd32abb0}
+\label{sec:org343ac42}
 \subsection{Window management}
-\label{sec:org22800c1}
+\label{sec:org68a0e2c}
 \subsection{Syntax highlighting}
-\label{sec:orgf5a5bd3}
+\label{sec:org98c7b8f}
 \subsection{Syntax checker}
-\label{sec:orgb6db3bc}
+\label{sec:org9592424}
 \subsection{Rdired buffers}
-\label{sec:org98846b0}
+\label{sec:org1a1518a}
 
 \section{Some useful Emacs packages}
-\label{sec:org476d1c8}
+\label{sec:org20d0135}
 \subsection{company}
-\label{sec:orgf8f9863}
+\label{sec:org0627fc2}
 \subsection{company-quickhelp}
-\label{sec:org1d87260}
+\label{sec:org5ef0abf}
 \begin{frame}[fragile,allowframebreaks,label=]{Documentation popups}
  \href{https://github.com/company-mode/company-quickhelp}{\texttt{company-quickhelp}} allows for documentation popups, e.g. to further describe function arguments.
 
@@ -144,5 +149,53 @@ By default, the documentation popup is shown automatically. You can adjust the t
 \end{frame}
 
 \subsection{yasnippet}
-\label{sec:org5c3f02e}
+\label{sec:org3585d4c}
+\begin{frame}[fragile,allowframebreaks,label=]{Code snippets}
+ \href{https://github.com/joaotavora/yasnippet}{\texttt{yasnippet}} is an Emacs package allowing for the expansion of whole pieces of code you often use (\emph{snippets}) from one given abbreviation. 
+
+\begin{block}{Key features of \texttt{yasnippet}}
+\begin{itemize}
+\item All code snippets are stored as plain-text files in one given directory, so that they are easy to share with other people, and can be easily version controlled.
+\item As a corollary, it is also easy to retrieve and use large collection of snippets already available online. For instance, Andrea Crotti maintains a great collection available at \url{https://github.com/AndreaCrotti/yasnippet-snippets}.
+\item Although we only demonstrate its use within ESS and R here, note that \texttt{yasnippet} is not an R-specific solution, and that you can use it for any other programming language.
+\end{itemize}
+\end{block}
+
+To set up \texttt{yasnippet}, proceed through the following steps:
+
+\begin{enumerate}
+\item Create a directory \texttt{snippets/} at some convenient location, and add a subfolder \texttt{ess-r-mode/} in this directory.
+\item Add the minimal following code in your init file:
+\begin{minted}[]{common-lisp}
+(use-package yasnippet
+  :ensure t
+  :config
+  ;; Indicate the directory containing your snippets:
+  (setq yas-snippet-dirs '("path/to/your/snippets"))
+  ;; Load your snippets on startup:
+  (yas-reload-all)
+  ;; Turn on yasnippet (minor) mode when editing R files:
+  (add-hook 'ess-r-mode-hook #'yas-minor-mode))
+\end{minted}
+\item You can now fill your \texttt{snippets/ess-r-mode/} directory with your own snippets. For instance, create a file \texttt{function} (without any extension) in this directory, with the following contents:
+\begin{verbatim}
+#name : function
+#key : fun
+# --
+${1:name} <- function(${2:args}) {
+    ${3:body}
+}
+\end{verbatim}
+Each snippet has a unique \texttt{name}, and can be triggered by typing a given \texttt{key} (followed by \texttt{TAB}). As we will see later on, the present snippet allows for the expansion of a template for defining new R functions more easily. The \texttt{yasnippet} manual gives more details about the expected syntax to define your own code snippets: \url{http://joaotavora.github.io/yasnippet/}.
+
+\item Now your \texttt{snippets} directory should look like:
+\begin{verbatim}
+└── snippets
+    └── ess-r-mode
+        └── function
+\end{verbatim}
+
+Feel free to add or retrieve (a lot!) more snippets, i.e. to add more file within the \texttt{ess-r-mode} sub-directory.
+\end{enumerate}
+\end{frame}
 \end{document}

@@ -17,9 +17,9 @@
 #+LATEX_HEADER: \usemintedstyle{friendly} % set style if needed, see https://frama.link/jfRr8Lpj
 #+LATEX_HEADER: \mdfdefinestyle{mystyle}{linecolor=gray!30,backgroundcolor=gray!30}
 #+LATEX_HEADER: \BeforeBeginEnvironment{minted}{%
-#+LATEX_HEADER: \begin{mdframed}[style=mystyle]}
+#+LATEX_HEADER: \small \begin{mdframed}[style=mystyle]}
 #+LATEX_HEADER: \AfterEndEnvironment{minted}{%
-#+LATEX_HEADER: \end{mdframed} \medskip}
+#+LATEX_HEADER: \end{mdframed} \medskip \normalsize}
 #+LATEX_HEADER: \usepackage{float}
 #+LATEX_HEADER: \usepackage{url}
 #+LATEX_HEADER: %% Formatting of verbatim outputs (i.e., outputs of R results):
@@ -40,6 +40,8 @@
 #+LATEX_HEADER: \setbeamercolor{subsection in head/foot}{fg=DarkPurple}
 #+LATEX_HEADER: \setbeamercolor{title in head/foot}{fg=white, bg=DarkPurple}
 #+LATEX_HEADER: \setbeamercolor{date in head/foot}{fg=grey}
+#+LATEX_HEADER: \setbeamercolor{block title}{fg=white, bg=DarkPurple}
+#+LATEX_HEADER: \setbeamercolor{block body}{bg=gray!20}
 #+LATEX_HEADER: %% Structure of a slide :
 #+LATEX_HEADER: \setbeamertemplate{footline}
 #+LATEX_HEADER: {
@@ -56,6 +58,9 @@
 #+LATEX_HEADER:  \end{beamercolorbox}}%
 #+LATEX_HEADER:  \vskip0pt%
 #+LATEX_HEADER: }
+#+LATEX_HEADER: \DeclareUnicodeCharacter{2514}{\mbox{\kern.23em \vrule height2.2exdepth-1.8ptwidth.4pt\vrule height2.2ptdepth-1.8ptwidth.23em}}
+#+LATEX_HEADER: \DeclareUnicodeCharacter{2500}{\mbox{\vrule height2.2ptdepth-1.8ptwidth.5em}}
+
 
 * Introductory words
 ** Filling your Emacs init file
@@ -109,3 +114,58 @@ The minimal elisp code to add to your init file is straightforward:
 By default, the documentation popup is shown automatically. You can adjust the time before the popup shows up by customizing the variable ~company-quickhelp-delay~.
 
 ** yasnippet
+*** Code snippets
+    :PROPERTIES:
+    :BEAMER_opt: allowframebreaks,label=
+    :END:
+
+[[https://github.com/joaotavora/yasnippet][~yasnippet~]] is an Emacs package allowing for the expansion of whole pieces of code you often use (/snippets/) from one given abbreviation. 
+
+**** Key features of ~yasnippet~
+- All code snippets are stored as plain-text files in one given directory, so that they are easy to share with other people, and can be easily version controlled.
+- As a corollary, it is also easy to retrieve and use large collection of snippets already available online. For instance, Andrea Crotti maintains a great collection available at https://github.com/AndreaCrotti/yasnippet-snippets.
+- Although we only demonstrate its use within ESS and R here, note that ~yasnippet~ is not an R-specific solution, and that you can use it for any other programming language.
+
+**** Setting up ~yasnippet~                                 :B_ignoreheading:
+     :PROPERTIES:
+     :BEAMER_env: ignoreheading
+     :END:
+To set up ~yasnippet~, proceed through the following steps:
+
+1. Create a directory ~snippets/~ at some convenient location, and add a subfolder ~ess-r-mode/~ in this directory.
+2. Add the minimal following code in your init file:
+   #+begin_src emacs-lisp :results output
+(use-package yasnippet
+  :ensure t
+  :config
+  ;; Indicate the directory containing your snippets:
+  (setq yas-snippet-dirs '("path/to/your/snippets"))
+  ;; Load your snippets on startup:
+  (yas-reload-all)
+  ;; Turn on yasnippet (minor) mode when editing R files:
+  (add-hook 'ess-r-mode-hook #'yas-minor-mode))
+   #+end_src
+3. You can now fill your ~snippets/ess-r-mode/~ directory with your own snippets. For instance, create a file ~function~ (without any extension) in this directory, with the following contents:
+   #+begin_example
+#name : function
+#key : fun
+# --
+${1:name} <- function(${2:args}) {
+    ${3:body}
+}
+   #+end_example
+   Each snippet has a unique ~name~, and can be triggered by typing a given ~key~ (followed by ~TAB~). As we will see later on, the present snippet allows for the expansion of a template for defining new R functions more easily. The ~yasnippet~ manual gives more details about the expected syntax to define your own code snippets: http://joaotavora.github.io/yasnippet/.
+
+4. Now your ~snippets~ directory should look like:
+   #+begin_example
+└── snippets
+    └── ess-r-mode
+        └── function
+   #+end_example
+
+   Feel free to add or retrieve (a lot!) more snippets, i.e. to add more files within the ~ess-r-mode~ sub-directory.
+
+**** Using ~yasnippet~ in an ESS[R] buffer                  :B_ignoreheading:
+     :PROPERTIES:
+     :BEAMER_env: ignoreheading
+     :END:
