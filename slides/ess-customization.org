@@ -60,6 +60,7 @@
 #+LATEX_HEADER: }
 #+LATEX_HEADER: \DeclareUnicodeCharacter{2514}{\mbox{\kern.23em \vrule height2.2exdepth-1.8ptwidth.4pt\vrule height2.2ptdepth-1.8ptwidth.23em}}
 #+LATEX_HEADER: \DeclareUnicodeCharacter{2500}{\mbox{\vrule height2.2ptdepth-1.8ptwidth.5em}}
+#+LATEX_HEADER: \setlength{\parskip}{5pt}
 
 
 * Introductory words
@@ -72,9 +73,11 @@ It is assumed that you use [[https://jwiegley.github.io/use-package/][~use-packa
 As a reminder, this is the minimal code to add in your init file so as to use ~use-package~, once it has been installed:
 
 #+begin_src emacs-lisp :eval no
+;; Make sure that use-package is installed:
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
+;; Load use-package:
 (eval-when-compile
   (require 'use-package))
 #+end_src
@@ -115,10 +118,6 @@ By default, the documentation popup is shown automatically. You can adjust the t
 
 ** yasnippet
 *** Code snippets
-    :PROPERTIES:
-    :BEAMER_opt: allowframebreaks,label=
-    :END:
-
 [[https://github.com/joaotavora/yasnippet][~yasnippet~]] is an Emacs package allowing for the expansion of whole pieces of code you often use (/snippets/) from one given abbreviation. 
 
 **** Key features of ~yasnippet~
@@ -126,10 +125,10 @@ By default, the documentation popup is shown automatically. You can adjust the t
 - As a corollary, it is also easy to retrieve and use large collection of snippets already available online. For instance, Andrea Crotti maintains a great collection available at https://github.com/AndreaCrotti/yasnippet-snippets.
 - Although we only demonstrate its use within ESS and R here, note that ~yasnippet~ is not an R-specific solution, and that you can use it for any other programming language.
 
-**** Setting up ~yasnippet~                                 :B_ignoreheading:
-     :PROPERTIES:
-     :BEAMER_env: ignoreheading
-     :END:
+*** Setting up ~yasnippet~
+    :PROPERTIES:
+    :BEAMER_opt: allowframebreaks,label=
+    :END:
 To set up ~yasnippet~, proceed through the following steps:
 
 1. Create a directory ~snippets/~ at some convenient location, and add a subfolder ~ess-r-mode/~ in this directory.
@@ -163,9 +162,11 @@ ${1:name} <- function(${2:args}) {
         └── function
    #+end_example
 
-   Feel free to add or retrieve (a lot!) more snippets, i.e. to add more files within the ~ess-r-mode~ sub-directory.
+   Feel free to add or retrieve (a lot!) more snippets, i.e. to add more template files within the ~ess-r-mode~ sub-directory.
 
-**** Using ~yasnippet~ in an ESS[R] buffer                  :B_ignoreheading:
-     :PROPERTIES:
-     :BEAMER_env: ignoreheading
-     :END:
+*** Using ~yasnippet~ in an ESS[R] buffer
+While you are editing an R source file with ESS, each snippet can be triggered by typing its ~key~ and then pressing ~TAB~. You can then navigate through the placeholders of the expanded template by pressing ~TAB~ again.
+
+For instance, with our previously defined snippet, typing ~fun~ followed by ~TAB~ will expand the full ~function~ template; you will then be able to specify easily a value for each of the three placeholders (the function's ~name~, its ~args~ and ~body~).
+
+Note that ~yasnippet~ has a short video tutorial, available at https://www.youtube.com/watch?v=ZCGmZK4V7Sg.

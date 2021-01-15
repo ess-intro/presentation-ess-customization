@@ -1,4 +1,4 @@
-% Created 2021-01-14 jeu. 14:27
+% Created 2021-01-15 ven. 08:02
 % Intended LaTeX compiler: pdflatex
 \documentclass[presentation]{beamer}
 \usepackage[utf8]{inputenc}
@@ -69,6 +69,7 @@ formatcom = {\color{gray!97}}
 }
 \DeclareUnicodeCharacter{2514}{\mbox{\kern.23em \vrule height2.2exdepth-1.8ptwidth.4pt\vrule height2.2ptdepth-1.8ptwidth.23em}}
 \DeclareUnicodeCharacter{2500}{\mbox{\vrule height2.2ptdepth-1.8ptwidth.5em}}
+\setlength{\parskip}{5pt}
 \usetheme{default}
 \author{Frédéric Santos\thanks{frederic.santos@u-bordeaux.fr}}
 \date{\today}
@@ -86,10 +87,10 @@ formatcom = {\color{gray!97}}
 
 
 \section{Introductory words}
-\label{sec:org2429222}
+\label{sec:org118db03}
 \subsection{Filling your Emacs init file}
-\label{sec:orga9ce641}
-\begin{frame}[label={sec:org52751f2},fragile]{A word about \texttt{use-package}}
+\label{sec:org06180f8}
+\begin{frame}[label={sec:org1d01855},fragile]{A word about \texttt{use-package}}
  In this document, several pieces of Emacs Lisp code will be proposed so that you can use them in your init file.
 
 It is assumed that you use \href{https://jwiegley.github.io/use-package/}{\texttt{use-package}} for your init file: the Emacs Lisp code can be adapted in a straightforward manner if you do not use it.
@@ -97,33 +98,35 @@ It is assumed that you use \href{https://jwiegley.github.io/use-package/}{\textt
 As a reminder, this is the minimal code to add in your init file so as to use \texttt{use-package}, once it has been installed:
 
 \begin{minted}[]{common-lisp}
+;; Make sure that use-package is installed:
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
+;; Load use-package:
 (eval-when-compile
   (require 'use-package))
 \end{minted}
 \end{frame}
 
 \section{ESS customization}
-\label{sec:org22ba9a2}
+\label{sec:orgdf7a0a3}
 \subsection{Visibility of evaluation}
-\label{sec:org343ac42}
+\label{sec:orgca1c513}
 \subsection{Window management}
-\label{sec:org68a0e2c}
+\label{sec:org6e9173d}
 \subsection{Syntax highlighting}
-\label{sec:org98c7b8f}
+\label{sec:org0b717be}
 \subsection{Syntax checker}
-\label{sec:org9592424}
+\label{sec:org1c9f1c3}
 \subsection{Rdired buffers}
-\label{sec:org1a1518a}
+\label{sec:orga50892e}
 
 \section{Some useful Emacs packages}
-\label{sec:org20d0135}
+\label{sec:org3b5d14c}
 \subsection{company}
-\label{sec:org0627fc2}
+\label{sec:org8825e59}
 \subsection{company-quickhelp}
-\label{sec:org5ef0abf}
+\label{sec:org2f600f5}
 \begin{frame}[fragile,allowframebreaks,label=]{Documentation popups}
  \href{https://github.com/company-mode/company-quickhelp}{\texttt{company-quickhelp}} allows for documentation popups, e.g. to further describe function arguments.
 
@@ -149,8 +152,8 @@ By default, the documentation popup is shown automatically. You can adjust the t
 \end{frame}
 
 \subsection{yasnippet}
-\label{sec:org3585d4c}
-\begin{frame}[fragile,allowframebreaks,label=]{Code snippets}
+\label{sec:org49d0515}
+\begin{frame}[label={sec:orge714f83},fragile]{Code snippets}
  \href{https://github.com/joaotavora/yasnippet}{\texttt{yasnippet}} is an Emacs package allowing for the expansion of whole pieces of code you often use (\emph{snippets}) from one given abbreviation. 
 
 \begin{block}{Key features of \texttt{yasnippet}}
@@ -160,8 +163,10 @@ By default, the documentation popup is shown automatically. You can adjust the t
 \item Although we only demonstrate its use within ESS and R here, note that \texttt{yasnippet} is not an R-specific solution, and that you can use it for any other programming language.
 \end{itemize}
 \end{block}
+\end{frame}
 
-To set up \texttt{yasnippet}, proceed through the following steps:
+\begin{frame}[fragile,allowframebreaks,label=]{Setting up \texttt{yasnippet}}
+ To set up \texttt{yasnippet}, proceed through the following steps:
 
 \begin{enumerate}
 \item Create a directory \texttt{snippets/} at some convenient location, and add a subfolder \texttt{ess-r-mode/} in this directory.
@@ -195,7 +200,15 @@ Each snippet has a unique \texttt{name}, and can be triggered by typing a given 
         └── function
 \end{verbatim}
 
-Feel free to add or retrieve (a lot!) more snippets, i.e. to add more file within the \texttt{ess-r-mode} sub-directory.
+Feel free to add or retrieve (a lot!) more snippets, i.e. to add more template files within the \texttt{ess-r-mode} sub-directory.
 \end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile,allowframebreaks,label=]{Using \texttt{yasnippet} in an ESS[R] buffer}
+ While you are editing an R source file with ESS, each snippet can be triggered by typing its \texttt{key} and then pressing \texttt{TAB}. You can then navigate through the placeholders of the expanded template by pressing \texttt{TAB} again.
+
+For instance, with our previously defined snippet, typing \texttt{fun} followed by \texttt{TAB} will expand the full \texttt{function} template; you will then be able to specify easily a value for each of the three placeholders (the function's \texttt{name}, its \texttt{args} and \texttt{body}).
+
+Note that \texttt{yasnippet} has a short video tutorial, available at \url{https://www.youtube.com/watch?v=ZCGmZK4V7Sg}.
 \end{frame}
 \end{document}
