@@ -65,13 +65,19 @@
 
 * Introductory words
 *** A short tutorial for customizing ESS
+**** Target audience
+This tutorial is for R-users beginning to use ESS. We only assume that you have mild familiarity with Emacs, and that you know how to customize Emacs by filling your ~.emacs~ or ~init.el~ file.
+
 **** Goals
 - Helping newcomers and beginners to have a more friendly and efficient setup
 - Helping users migrating from other IDEs to keep behaviours and habits they are used to
 - Showcasing some other Emacs packages that play well with ESS and may improve your coding experience
 
-**** Target audience
-This tutorial is for R-users beginning to use ESS. We only assume that you have mild familiarity with Emacs, and that you know how to customize Emacs by filling your ~.emacs~ or ~init.el~ file.
+**** Video tutorial                                         :B_ignoreheading:
+     :PROPERTIES:
+     :BEAMER_env: ignoreheading
+     :END:
+These slides are a companion for the video tutorial available at ...
 
 *** A word about ~use-package~
 In this document, several pieces of Emacs Lisp code will be proposed so that you can use them in your init file.
