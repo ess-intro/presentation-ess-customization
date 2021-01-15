@@ -60,7 +60,7 @@
 #+LATEX_HEADER: }
 #+LATEX_HEADER: \DeclareUnicodeCharacter{2514}{\mbox{\kern.23em \vrule height2.2exdepth-1.8ptwidth.4pt\vrule height2.2ptdepth-1.8ptwidth.23em}}
 #+LATEX_HEADER: \DeclareUnicodeCharacter{2500}{\mbox{\vrule height2.2ptdepth-1.8ptwidth.5em}}
-#+LATEX_HEADER: \setlength{\parskip}{5pt}
+#+LATEX_HEADER: \setlength{\parskip}{6pt}
 
 
 * Introductory words
@@ -105,6 +105,59 @@ As a reminder, this is the minimal code to add in your init file so as to use ~u
 
 * Some useful Emacs packages
 ** company
+*** Completion
+    :PROPERTIES:
+    :BEAMER_opt: allowframebreaks,label=
+    :END:
+As mentioned [[https://ess.r-project.org/Manual/ess.html#Completion][in the ESS manual]], there are several completion frameworks for writing R code with ESS. The Emacs package [[https://company-mode.github.io/][~company~]] is an elegant solution, which also supports many other programming languages.
+
+Here is a minimal piece of Elisp code to add in your init file to install and load ~company~:
+
+#+begin_src emacs-lisp :eval no
+(use-package company
+  :ensure t
+  :config
+  ;; Turn on company-mode globally:
+  (add-hook 'after-init-hook 'global-company-mode)
+  ;; Only activate company in R scripts, not in R console:
+  (setq ess-use-company 'script-only))
+#+end_src
+
+#+NAME: fig-company
+#+CAPTION: An example of code completion with ~company~: various candidates are proposed for the arguments of the function ~car::Anova()~.
+#+ATTR_LATEX: :width 0.72 \textwidth
+[[./images/company.png]]
+
+~company~ offers completion candidates in various contexts: function name, argument name within a function call (as in Fig. [[fig-company]]), object name.
+
+It may seem preferable to adopt a non-intrusive workflow. For functions or objects names, completion starts automatically after you type a few letters. For arguments names within a function call, it is suggested that you trigger manually the completion only when you need it. This can be done with ~M-x company-complete~, or more conveniently, by binding this function to a convenient shortcut. For example, to bind it to ~F12~, add the following to your init file:
+
+#+begin_src emacs-lisp :eval no
+;; Use F12 to trigger manually completion on R function args:
+(add-hook 'ess-r-mode-hook
+	  '(lambda ()
+	     (local-set-key (kbd "<f12>") #'company-R-args)))
+#+end_src
+
+#+begin_export latex
+\pagebreak
+#+end_export
+
+Of course, further customization of ~company~ can be done in your init file. For instance:
+
+#+begin_src emacs-lisp :eval no
+;; More customization options for company:
+(setq company-selection-wrap-around t
+      ;; Align annotations to the right tooltip border:
+      company-tooltip-align-annotations t
+      ;; Idle delay in seconds until completion starts automatically:
+      company-idle-delay 0.45
+      ;; Completion will start after typing two letters:
+      company-minimum-prefix-length 2
+      ;; Maximum number of candidates in the tooltip:
+      company-tooltip-limit 10)
+#+end_src
+
 ** company-quickhelp
 *** Documentation popups
     :PROPERTIES:
@@ -147,7 +200,7 @@ To set up ~yasnippet~, proceed through the following steps:
 
 1. Create a directory ~snippets/~ at some convenient location, and add a subfolder ~ess-r-mode/~ in this directory.
 2. Add the minimal following code in your init file:
-   #+begin_src emacs-lisp :results output
+   #+begin_src emacs-lisp :eval no
 (use-package yasnippet
   :ensure t
   :config
