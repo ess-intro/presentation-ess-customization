@@ -100,6 +100,44 @@ As a reminder, this is the minimal code to add in your init file so as to use ~u
 ** Visibility of evaluation
 ** Window management
 ** Syntax highlighting
+** Parenthesis matching
+*** Seeing matching parentheses
+Directly taken from the ESS manual (http://ess.r-project.org/Manual/ess.html#Parens):
+
+#+begin_quote
+"Emacs has facilities for highlighting the parenthesis matching the parenthesis at point. This feature is very useful when trying to examine which parentheses match each other. This highlighting also indicates when parentheses are not matching."
+#+end_quote
+
+To activate parenthesis matching in ESS[R] (source) buffers, add this to your init file:
+
+#+begin_src emacs-lisp :results output
+;; Activate global mode for parenthesis matching:
+(show-paren-mode)
+#+end_src
+
+*** Navigating through matching parentheses
+Here are some convenient tricks for navigating through parenthetical groups (this can be useful when dealing with large paren groups, e.g. when developing a shiny UI):
+
+#+begin_export latex
+\small
+#+end_export
+
+#+CAPTION: Some useful shortcuts for dealing with parenthetical groups.
+|-----------+-----------------------------------------------------------------|
+| Shortcut  | ~Elisp function~ (Docstring)                                    |
+|-----------+-----------------------------------------------------------------|
+| ~C-M-p~   | ~backward-list~ (Move backward across one balanced paren group) |
+| ~C-M-n~   | ~forward-list~ (Move forward across one balanced paren group)   |
+| ~C-M-SPC~ | ~mark-sexp~ (Set mark at the end of the paren group)            |
+| ~C-M-k~   | ~kill-sexp~ (Kill from point to end of paren group)             |
+|-----------+-----------------------------------------------------------------|
+
+#+begin_export latex
+\normalsize
+#+end_export
+
+For instance, when the point is over a closing parenthesis, ~C-M-p~ brings you to the matching opening parenthesis. Then, ~C-M-k~ kills to whole paren group.
+
 ** Syntax checker
 ** Rdired buffers
 
