@@ -118,6 +118,50 @@ If you prefer to eval R code invisibly, add in your init file:
 
 ** Window management
 ** Syntax highlighting
+*** Syntactic highlighting in ESS R source buffers
+    :PROPERTIES:
+    :BEAMER_opt: allowframebreaks,label=
+    :END:
+
+By default, ESS highlights literals, assignments, source functions and reserved words. An example of default syntactic highlighting is as follows:
+
+#+NAME: fig-default-highlight
+#+CAPTION: Default patterns for syntactic highlighting.
+#+ATTR_LATEX: :width 0.5 \textwidth
+[[./images/highlight_default.png]]
+
+You can add more patterns to be highlighted, or remove some of them, by customizing the variable ~ess-R-font-lock-keywords~.
+
+#+begin_export latex
+\pagebreak
+#+end_export
+
+For instance, if you also want the numbers and the function calls to be highlighted:
+
+#+begin_src emacs-lisp :eval no
+;; Font lock keywords for syntactic highlighting:
+(setq ess-R-font-lock-keywords
+      '((ess-R-fl-keyword:keywords . t)
+	(ess-R-fl-keyword:constants . t)
+	(ess-R-fl-keyword:modifiers . t)
+	(ess-R-fl-keyword:fun-defs . t)
+	(ess-R-fl-keyword:assign-ops . t)
+	(ess-R-fl-keyword:%op% . t)
+	(ess-fl-keyword:fun-calls . t)
+	(ess-fl-keyword:numbers . t)
+	(ess-fl-keyword:operators)
+	(ess-fl-keyword:delimiters)
+	(ess-fl-keyword:=)
+	(ess-R-fl-keyword:F&T . t))))
+#+end_src
+
+The same code is now highlighted differently, and maybe somewhat more clearly:
+
+#+NAME: fig-default-highlight
+#+CAPTION: More custom patterns for syntactic highlighting.
+#+ATTR_LATEX: :width 0.55 \textwidth
+[[./images/highlight_custom.png]]
+
 ** Parenthesis matching
 *** Seeing matching parentheses
 Directly taken from the ESS manual (http://ess.r-project.org/Manual/ess.html#Parens):
