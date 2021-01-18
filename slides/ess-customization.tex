@@ -1,4 +1,4 @@
-% Created 2021-01-18 lun. 08:51
+% Created 2021-01-18 lun. 09:10
 % Intended LaTeX compiler: pdflatex
 \documentclass[presentation]{beamer}
 \usepackage[utf8]{inputenc}
@@ -87,8 +87,8 @@ formatcom = {\color{gray!97}}
 
 
 \section{Introductory words}
-\label{sec:orgfe005e5}
-\begin{frame}[label={sec:org89891fd},fragile]{A short tutorial for customizing ESS}
+\label{sec:orgd353a7d}
+\begin{frame}[label={sec:org8c319d7},fragile]{A short tutorial for customizing ESS}
  \begin{block}{Target audience}
 This tutorial is for R-users beginning to use ESS. We only assume that you have mild familiarity with Emacs, and that you know how to customize Emacs by filling your \texttt{.emacs} or \texttt{init.el} file.
 \end{block}
@@ -104,7 +104,13 @@ This tutorial is for R-users beginning to use ESS. We only assume that you have 
 These slides are a companion for the video tutorial available at \ldots{}
 \end{frame}
 
-\begin{frame}[label={sec:orgf54bcba},fragile]{A word about \texttt{use-package}}
+\begin{frame}[label={sec:orgfd2d1e6},fragile]{An opinionated tutorial?}
+ Some parts of this tutorial (e.g., replacing \texttt{Flymake} by \texttt{Flycheck} for syntax checking, or using \texttt{company} instead of other solutions for auto-completion) might be seen as quite opinionated. However, when several options or approaches were available for a given task, the most widespread and efficient (I hope!) was presented.
+
+If you prefer other approaches, the ESS manual remains the canonical documentation: \url{http://ess.r-project.org/Manual/ess.html}
+\end{frame}
+
+\begin{frame}[label={sec:org15fecce},fragile]{A word about \texttt{use-package}}
  In this document, several pieces of Emacs Lisp code will be proposed so that you can use them in your init file.
 
 It is assumed that you use \href{https://jwiegley.github.io/use-package/}{\texttt{use-package}} for your init file: the Emacs Lisp code can be adapted in a straightforward manner if you do not use it.
@@ -123,16 +129,16 @@ As a reminder, this is the minimal code to add in your init file so as to use \t
 \end{frame}
 
 \section{ESS customization}
-\label{sec:org1cf52e6}
+\label{sec:org8ee4a55}
 \subsection{Visibility of evaluation}
-\label{sec:org6174904}
+\label{sec:orga87e6ce}
 \subsection{Window management}
-\label{sec:orgeb88dc5}
+\label{sec:orgb839120}
 \subsection{Syntax highlighting}
-\label{sec:orga7418c0}
+\label{sec:orgbf93b14}
 \subsection{Parenthesis matching}
-\label{sec:org0b11a61}
-\begin{frame}[label={sec:orgf038c51},fragile]{Seeing matching parentheses}
+\label{sec:orge53ede3}
+\begin{frame}[label={sec:org49491ca},fragile]{Seeing matching parentheses}
  Directly taken from the ESS manual (\url{http://ess.r-project.org/Manual/ess.html\#Parens}):
 
 \begin{quote}
@@ -147,7 +153,7 @@ To activate parenthesis matching in ESS[R] (source) buffers, add this to your in
 \end{minted}
 \end{frame}
 
-\begin{frame}[label={sec:orge6d1832},fragile]{Navigating through matching parentheses}
+\begin{frame}[label={sec:orgdb6a798},fragile]{Navigating through matching parentheses}
  Here are some convenient tricks for navigating through parenthetical groups (this can be useful when dealing with large paren groups, e.g. when developing a shiny UI):
 
 \small
@@ -174,14 +180,28 @@ For instance, when the point is over a closing parenthesis, \texttt{C-M-p} bring
 \end{frame}
 
 \subsection{Syntax checker}
-\label{sec:org6e4be90}
+\label{sec:org1d82ce8}
+\begin{frame}[fragile,allowframebreaks,label=]{On-the-fly syntax checking}
+ ESS has facilities for on-the-fly syntax checking. Instead of using \texttt{Flymake}, which is the default choice, using \texttt{Flycheck} appears to be a better and more stable option. To switch from Flymake to Flycheck, you can add the following in your init file:
+
+\begin{minted}[]{common-lisp}
+;; Remove Flymake support:
+(setq ess-use-flymake nil)
+;; Replace it (globally) by Flycheck:
+(use-package flycheck
+  :ensure t
+  :init
+  (global-flycheck-mode t))
+\end{minted}
+\end{frame}
+
 \subsection{Rdired buffers}
-\label{sec:orgfc16aa3}
+\label{sec:org3fb0d37}
 
 \section{Some useful Emacs packages}
-\label{sec:orgb6965dc}
+\label{sec:orgfdcc02e}
 \subsection{company}
-\label{sec:org8df5d2b}
+\label{sec:orgc0fa105}
 \begin{frame}[fragile,allowframebreaks,label=]{Completion}
  As mentioned \href{https://ess.r-project.org/Manual/ess.html\#Completion}{in the ESS manual}, there are several completion frameworks for writing R code with ESS. The Emacs package \href{https://company-mode.github.io/}{\texttt{company}} is an elegant solution, which also supports many other programming languages.
 
@@ -200,10 +220,10 @@ Here is a minimal piece of Elisp code to add in your init file to install and lo
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.72 \textwidth]{./images/company.png}
-\caption{\label{fig:orgb66b93c}An example of code completion with \texttt{company}: various candidates are proposed for the arguments of the function \texttt{car::Anova()}.}
+\caption{\label{fig:org4f865da}An example of code completion with \texttt{company}: various candidates are proposed for the arguments of the function \texttt{car::Anova()}.}
 \end{figure}
 
-\texttt{company} offers completion candidates in various contexts: function name, argument name within a function call (as in Fig. \ref{fig:orgb66b93c}), object name.
+\texttt{company} offers completion candidates in various contexts: function name, argument name within a function call (as in Fig. \ref{fig:org4f865da}), object name.
 
 It may seem preferable to adopt a non-intrusive workflow. For functions or objects names, completion starts automatically after you type a few letters. For arguments names within a function call, it is suggested that you trigger manually the completion only when you need it. This can be done with \texttt{M-x company-complete}, or more conveniently, by binding this function to a convenient shortcut. For example, to bind it to \texttt{F12}, add the following to your init file:
 
@@ -233,7 +253,7 @@ Of course, further customization of \texttt{company} can be done in your init fi
 \end{frame}
 
 \subsection{company-quickhelp}
-\label{sec:org10a5a8d}
+\label{sec:org06ffafe}
 \begin{frame}[fragile,allowframebreaks,label=]{Documentation popups}
  \href{https://github.com/company-mode/company-quickhelp}{\texttt{company-quickhelp}} allows for documentation popups, e.g. to further describe function arguments.
 
@@ -259,8 +279,8 @@ By default, the documentation popup is shown automatically. You can adjust the t
 \end{frame}
 
 \subsection{yasnippet}
-\label{sec:orgd7c7a29}
-\begin{frame}[label={sec:org7ba2ac6},fragile]{Code snippets}
+\label{sec:orge0d9532}
+\begin{frame}[label={sec:org2ee239c},fragile]{Code snippets}
  \href{https://github.com/joaotavora/yasnippet}{\texttt{yasnippet}} is an Emacs package allowing for the expansion of whole pieces of code you often use (\emph{snippets}) from one given abbreviation. 
 
 \begin{block}{Key features of \texttt{yasnippet}}
@@ -311,7 +331,7 @@ Feel free to add or retrieve (a lot!) more snippets, i.e. to add more template f
 \end{enumerate}
 \end{frame}
 
-\begin{frame}[label={sec:orgfd9f44a},fragile]{Using \texttt{yasnippet} in an ESS[R] buffer}
+\begin{frame}[label={sec:orgcf0af66},fragile]{Using \texttt{yasnippet} in an ESS[R] buffer}
  While you are editing an R source file with ESS, each snippet can be triggered by typing its \texttt{key} and then pressing \texttt{TAB}. You can then navigate through the placeholders of the expanded template by pressing \texttt{TAB} again.
 
 For instance, with our previously defined snippet, typing \texttt{fun} followed by \texttt{TAB} will expand the full \texttt{function} template; you will then be able to specify easily a value for each of the three placeholders (the function's \texttt{name}, its \texttt{args} and \texttt{body}).

@@ -79,6 +79,11 @@ This tutorial is for R-users beginning to use ESS. We only assume that you have 
      :END:
 These slides are a companion for the video tutorial available at ...
 
+*** An opinionated tutorial?
+Some parts of this tutorial (e.g., replacing ~Flymake~ by ~Flycheck~ for syntax checking, or using ~company~ instead of other solutions for auto-completion) might be seen as quite opinionated. However, when several options or approaches were available for a given task, the most widespread and efficient (I hope!) was presented.
+
+If you prefer other approaches, the ESS manual remains the canonical documentation: http://ess.r-project.org/Manual/ess.html
+
 *** A word about ~use-package~
 In this document, several pieces of Emacs Lisp code will be proposed so that you can use them in your init file.
 
@@ -139,6 +144,22 @@ Here are some convenient tricks for navigating through parenthetical groups (thi
 For instance, when the point is over a closing parenthesis, ~C-M-p~ brings you to the matching opening parenthesis. Then, ~C-M-k~ kills to whole paren group.
 
 ** Syntax checker
+*** On-the-fly syntax checking
+    :PROPERTIES:
+    :BEAMER_opt: allowframebreaks,label=
+    :END:
+ESS has facilities for on-the-fly syntax checking. Instead of using ~Flymake~, which is the default choice, using ~Flycheck~ appears to be a better and more stable option. To switch from Flymake to Flycheck, you can add the following in your init file:
+
+#+begin_src emacs-lisp :results output
+;; Remove Flymake support:
+(setq ess-use-flymake nil)
+;; Replace it (globally) by Flycheck:
+(use-package flycheck
+  :ensure t
+  :init
+  (global-flycheck-mode t))
+#+end_src
+
 ** Rdired buffers
 
 * Some useful Emacs packages
