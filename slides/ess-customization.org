@@ -17,7 +17,7 @@
 #+LATEX_HEADER: \usemintedstyle{friendly} % set style if needed, see https://frama.link/jfRr8Lpj
 #+LATEX_HEADER: \mdfdefinestyle{mystyle}{linecolor=gray!30,backgroundcolor=gray!30}
 #+LATEX_HEADER: \BeforeBeginEnvironment{minted}{%
-#+LATEX_HEADER: \small \begin{mdframed}[style=mystyle]}
+#+LATEX_HEADER: \footnotesize \begin{mdframed}[style=mystyle]}
 #+LATEX_HEADER: \AfterEndEnvironment{minted}{%
 #+LATEX_HEADER: \end{mdframed} \medskip \normalsize}
 #+LATEX_HEADER: \usepackage{float}
@@ -116,8 +116,7 @@ If you prefer to eval R code invisibly, add in your init file:
 (setq ess-eval-visibly nil)
 #+end_src
 
-** Window management
-** Syntax highlighting
+** Syntactic highlighting
 *** Syntactic highlighting in ESS R source buffers
     :PROPERTIES:
     :BEAMER_opt: allowframebreaks,label=
@@ -257,7 +256,55 @@ To display all syntax error in a dedicated buffer, use =M-x flycheck-list-errors
 #+ATTR_LATEX: :width \textwidth
 [[./images/lintr.png]]
 
-** Rdired buffers
+** Some more steps towards an R IDE
+*** Rdired buffer
+
+*** Window management
+    :PROPERTIES:
+    :BEAMER_opt: allowframebreaks,label=
+    :END: 
+Users coming from other R IDEs may be used to a given window (or /pane/) configuration, e.g.:
+- R source code window at the top left
+- R console (i.e., inferior R process) at the top right
+- Rdired environment window at the bottom left
+- R help window at the bottom right
+
+This is only an arbitrary example, but quite a reasonable one. You will find below a screenshot of such a window configuration, along with the corresponding Emacs Lisp code to add in your init file.
+
+#+begin_export latex
+\pagebreak
+#+end_export
+
+#+NAME: fig-window-config
+#+CAPTION: An example of window configuration: ESS as an R IDE.
+#+ATTR_LATEX: :width 0.96 \textwidth
+[[./images/window_config.png]]
+
+#+begin_export latex
+\pagebreak
+#+end_export
+
+#+begin_src emacs-lisp :eval no
+;; An example of window configuration:
+(setq display-buffer-alist
+      '(("*R Dired"
+	 (display-buffer-reuse-window display-buffer-at-bottom)
+	 (window-width . 0.5)
+	 (window-height . 0.25)
+	 (reusable-frames . nil))
+	("*R"
+	 (display-buffer-reuse-window display-buffer-in-side-window)
+	 (side . right)
+	 (slot . -1)
+	 (window-width . 0.5)
+	 (reusable-frames . nil))
+	("*Help"
+	 (display-buffer-reuse-window display-buffer-in-side-window)
+	 (side . right)
+	 (slot . 1)
+	 (window-width . 0.5)
+	 (reusable-frames . nil))))
+#+end_src
 
 * Some useful Emacs packages
 ** company
