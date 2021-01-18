@@ -102,7 +102,20 @@ As a reminder, this is the minimal code to add in your init file so as to use ~u
 #+end_src
 
 * ESS customization
-** Visibility of evaluation
+** Code evaluation
+*** Visibility of evaluation
+From an R source file (i.e., an ESS[R] buffer), you can send code to the underlying R process with shortcuts like ~C-c C-b~ (~ess-eval-buffer~), ~C-RET~ (~ess-eval-region-or-line-and-step~), etc.
+
+In the inferior R process buffer, ESS can display either both the commands sent and their results, or only the results. The choice between the two can be made through the variable ~ess-eval-visibly~.
+
+This variable can be ~t~ (eval visibly and wait for process) or ~nil~ (eval invisibly); but by default it is set to ~‘nowait’~, which means that ESS shows input commands in the process buffer, but allows for further editing in the source buffer even while the previous instructions sent are still running. This way, ESS is never freezing while evaluating code.
+
+If you prefer to eval R code invisibly, add in your init file:
+
+#+begin_src emacs-lisp :eval no
+(setq ess-eval-visibly nil)
+#+end_src
+
 ** Window management
 ** Syntax highlighting
 ** Parenthesis matching
