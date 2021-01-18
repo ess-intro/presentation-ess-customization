@@ -2,12 +2,12 @@
 #+AUTHOR: Frédéric Santos
 
 ** Goals
-- Showing how to customize ESS to fit your own needs and habits
+- Showing how to customize Emacs and ESS as an advanced R IDE
 - Helping newcomers and beginners to have a more friendly and efficient setup
 - Helping users migrating from other IDEs to keep behaviours and habits they are used to
 - Showcasing some other Emacs packages that play well with ESS and may improve your coding experience
 
 ** TODO Ressources [0/0]
 - [ ] [[https://github.com/ess-intro/presentation-ess-customization/blob/main/slides/ess-customization.org][Raw org file]]: WIP.
-- [ ] [[https://github.com/ess-intro/presentation-ess-customization/blob/main/slides/ess-customization.pdf][Slides]]: WIP.
+- [ ] [[https://github.com/ess-intro/presentation-ess-customization/blob/main/slides/ess-customization.pdf][PDF (beamer) slides]]: WIP.
 - [ ] Video tutorial: soon.
