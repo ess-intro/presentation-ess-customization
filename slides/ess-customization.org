@@ -258,11 +258,45 @@ To display all syntax error in a dedicated buffer, use =M-x flycheck-list-errors
 
 ** Some more steps towards an R IDE
 *** Rdired buffer
+    :PROPERTIES:
+    :BEAMER_opt: allowframebreaks,label=
+    :END:
+[[http://ess.r-project.org/Manual/ess.html#Rdired][From the ESS manual:]]
+
+#+begin_quote
+"Ess-rdired provides a dired-like buffer for viewing, editing and plotting objects in your current R session. If you are used to using the dired (directory editor) facility in Emacs, this mode gives you similar functionality for R objects."
+#+end_quote
+
+All the R objects of the current R sessions are thus listed in the Rdired buffer, and it is possible to interact with them easily (~p~ for plotting an object, ~d~ for deleting it, etc.).
+
+The following screenshot (Fig. [[fig-rdired]]) shows the contents of an Rdired buffer for the R session associated to a small piece of code.
+
+#+NAME: fig-rdired
+#+CAPTION: An example of Rdired buffer (bottom window).
+#+ATTR_LATEX: :width 0.65 \textwidth
+[[./images/rdired.png]]
+
+#+begin_export latex
+\pagebreak
+#+end_export
+
+Rdired buffers can be triggered manually with =M-x ess-rdired=, which might not be really convenient in practice. With the following piece of Emacs Lisp code, you will be able to use ~F9~ for both opening and closing the Rdired buffer, so that you can consult and display it only when necessary:
+
+#+begin_src emacs-lisp :results output
+;; Open Rdired buffer with F9:
+(add-hook 'ess-r-mode-hook
+	  '(lambda ()
+	     (local-set-key (kbd "<f9>") #'ess-rdired)))
+;; Close Rdired buffer with F9 as well:
+(add-hook 'ess-rdired-mode-hook
+	  '(lambda ()
+	     (local-set-key (kbd "<f9>") #'kill-buffer-and-window)))
+#+end_src
 
 *** Window management
     :PROPERTIES:
     :BEAMER_opt: allowframebreaks,label=
-    :END: 
+    :END:
 Users coming from other R IDEs may be used to a given window (or /pane/) configuration, e.g.:
 - R source code window at the top left
 - R console (i.e., inferior R process) at the top right
