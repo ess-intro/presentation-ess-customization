@@ -231,6 +231,8 @@ install.packages("lintr", dep = TRUE)
 devtools::install_github("jimhester/lintr")
 #+end_src
 
+([[https://emacs.stackexchange.com/questions/53018/flycheck-r-lintr-doesnt-find-anything][Some users reported]] that you might also have to create manually a folder =~/.R/lintr_cache= on your computer, if it was not created after the previous step.)
+
 ~lintr~ is an R package that offers facilities for static code analysis. It integrates with the main IDEs and text editors (Emacs, Rstudio, vim, etc.). In particular, it has native support for ESS + ~Flycheck~.
 
 #+begin_export latex
