@@ -7,7 +7,8 @@
 - Helping users migrating from other IDEs to keep behaviours and habits they are used to
 - Showcasing some other Emacs packages that play well with ESS and may improve your coding experience
 
-** TODO Ressources [0/0]
-- [ ] [[https://github.com/ess-intro/presentation-ess-customization/blob/main/slides/ess-customization.org][Raw org file]]: WIP.
-- [ ] [[https://github.com/ess-intro/presentation-ess-customization/blob/main/slides/ess-customization.pdf][PDF (beamer) slides]]: WIP.
-- [ ] Video tutorial: soon.
+** Ressources
+- [[https://github.com/ess-intro/presentation-ess-customization/blob/main/slides/ess-customization.org][Raw org file]]
+- PDF tutorial
+- [[https://github.com/ess-intro/presentation-ess-customization/blob/main/slides/slides-ess-customization.pdf][PDF slides (superceded by the above PDF tutorial)]]
+- Video tutorial: soon.

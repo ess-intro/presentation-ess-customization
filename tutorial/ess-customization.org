@@ -1,93 +1,70 @@
 #+TITLE: Customizing and extending Emacs Speaks Statistics
+#+SUBTITLE: Part of the ESS-Intro series
 #+AUTHOR: Frédéric Santos
 #+EMAIL: frederic.santos@u-bordeaux.fr
 #+DATE: \today
 #+LANGUAGE: en
-#+OPTIONS: email:t toc:nil H:3 ^:nil
-#+startup: beamer
-#+LaTeX_CLASS: beamer
-#+LATEX_HEADER: \usetheme{CambridgeUS}
-#+LATEX_HEADER: \setbeamertemplate{navigation symbols}{} % pas de barre de navigation
+#+STARTUP: showall
+#+OPTIONS: email:t toc:t ^:nil
 #+LATEX_HEADER: \usepackage[english]{babel}
-#+LATEX_HEADER: \usepackage{lmodern}
-#+LATEX_HEADER: \usepackage[matha,mathb]{mathabx}
-#+LATEX_HEADER: \usepackage{subfig}
-#+LATEX_HEADER: \usepackage{mdframed}
+#+LATEX_HEADER: \usepackage{a4wide}
+#+LATEX_HEADER: \usepackage{mathpazo}
+#+LATEX_HEADER: \usepackage{amsmath}
+#+LATEX_HEADER: \usepackage{titlesec}
+#+LATEX_HEADER: \titlelabel{\thetitle.\quad}
+#+LATEX_HEADER: \usepackage[usenames,dvipsnames]{xcolor} % For colors with friendly names
 #+LATEX_HEADER: \usepackage{minted}
+#+LATEX_HEADER: \usepackage{mdframed}                    % Companion of minted for code blocks
+#+LATEX_HEADER: \usepackage{fancyvrb}                    % For verbatim R outputs
 #+LATEX_HEADER: \usemintedstyle{friendly} % set style if needed, see https://frama.link/jfRr8Lpj
 #+LATEX_HEADER: \mdfdefinestyle{mystyle}{linecolor=gray!30,backgroundcolor=gray!30}
 #+LATEX_HEADER: \BeforeBeginEnvironment{minted}{%
-#+LATEX_HEADER: \footnotesize \begin{mdframed}[style=mystyle]}
+#+LATEX_HEADER: \begin{mdframed}[style=mystyle]}
 #+LATEX_HEADER: \AfterEndEnvironment{minted}{%
-#+LATEX_HEADER: \end{mdframed} \medskip \normalsize}
-#+LATEX_HEADER: \usepackage{float}
-#+LATEX_HEADER: \usepackage{url}
+#+LATEX_HEADER: \end{mdframed}}
 #+LATEX_HEADER: %% Formatting of verbatim outputs (i.e., outputs of R results):
 #+LATEX_HEADER: \DefineVerbatimEnvironment{verbatim}{Verbatim}{%
 #+LATEX_HEADER:   fontsize = \small,
 #+LATEX_HEADER:   frame = leftline,
 #+LATEX_HEADER:   formatcom = {\color{gray!97}}
 #+LATEX_HEADER: }
-#+LATEX_HEADER: \setbeamertemplate{caption}[numbered]
-#+LATEX_HEADER: %% Perso colors
-#+LATEX_HEADER: \definecolor{PalePurple}{RGB}{127, 90, 182}
-#+LATEX_HEADER: \definecolor{DarkPurple}{RGB}{98, 36, 134}
-#+LATEX_HEADER: \definecolor{grey}{RGB}{51, 63, 72}
-#+LATEX_HEADER: \setbeamercolor{title}{fg=white, bg=DarkPurple}
-#+LATEX_HEADER: \setbeamercolor{frametitle}{fg=black}
-#+LATEX_HEADER: \setbeamercolor{structure}{fg=PalePurple}
-#+LATEX_HEADER: \setbeamercolor{section in head/foot}{fg=white, bg=PalePurple}
-#+LATEX_HEADER: \setbeamercolor{subsection in head/foot}{fg=DarkPurple}
-#+LATEX_HEADER: \setbeamercolor{title in head/foot}{fg=white, bg=DarkPurple}
-#+LATEX_HEADER: \setbeamercolor{date in head/foot}{fg=grey}
-#+LATEX_HEADER: \setbeamercolor{block title}{fg=white, bg=DarkPurple}
-#+LATEX_HEADER: \setbeamercolor{block body}{bg=gray!20}
-#+LATEX_HEADER: %% Structure of a slide :
-#+LATEX_HEADER: \setbeamertemplate{footline}
-#+LATEX_HEADER: {
-#+LATEX_HEADER: \leavevmode%
-#+LATEX_HEADER: \hbox{%
-#+LATEX_HEADER: \begin{beamercolorbox}[wd=.75\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
-#+LATEX_HEADER:\usebeamerfont{author in head/foot}\inserttitle
-#+LATEX_HEADER:\end{beamercolorbox}%
-#+LATEX_HEADER: %\begin{beamercolorbox}[wd=.3\paperwidth,ht=2.25ex,dp=1ex,center]{section in head/foot}%
-#+LATEX_HEADER: %\usebeamerfont{title in head/foot}\insertsection
-#+LATEX_HEADER: %\end{beamercolorbox}%
-#+LATEX_HEADER: \begin{beamercolorbox}[wd=.25\paperwidth,ht=2.25ex,dp=1ex,center]{date in head/foot}%
-#+LATEX_HEADER: \insertframenumber{} / \inserttotalframenumber\hspace*{1ex}
-#+LATEX_HEADER:  \end{beamercolorbox}}%
-#+LATEX_HEADER:  \vskip0pt%
-#+LATEX_HEADER: }
+#+LATEX_HEADER: \usepackage{float}
+#+LATEX_HEADER: \usepackage{url}
+#+LATEX_HEADER: %% Decalre new unicode characters for displaying trees:
 #+LATEX_HEADER: \DeclareUnicodeCharacter{2514}{\mbox{\kern.23em \vrule height2.2exdepth-1.8ptwidth.4pt\vrule height2.2ptdepth-1.8ptwidth.23em}}
 #+LATEX_HEADER: \DeclareUnicodeCharacter{2500}{\mbox{\vrule height2.2ptdepth-1.8ptwidth.5em}}
-#+LATEX_HEADER: \setlength{\parskip}{6pt}
-
 
 * Introductory words
-*** A short tutorial for customizing ESS
-**** Target audience
-This tutorial is for R-users beginning to use ESS. We only assume that you have mild familiarity with Emacs, and that you know how to customize Emacs by filling your ~.emacs~ or ~init.el~ file.
+** A short tutorial for customizing ESS
+This document is a part of the ESS-Intro tutorial series. A full list of tutorials is available online at https://github.com/ess-intro.
 
-**** Goals
+If you are are totally new to Emacs, you should probably begin with the tutorial "[[https://github.com/ess-intro/presentation-first-steps][First steps with Emacs]]" by Dirk Eddelbuettel.
+
+*** Target audience
+This tutorial is for R-users beginning to use Emacs Speaks Statistics (ESS). We only assume that you have mild familiarity with Emacs, and that you know how to customize Emacs by filling your ~.emacs~ or ~init.el~ file.
+
+*** Goals
 - Helping newcomers and beginners to have a more friendly and efficient setup
 - Helping users migrating from other IDEs to keep behaviours and habits they are used to
 - Showcasing some other Emacs packages that play well with ESS and may improve your coding experience
 
-**** Video tutorial                                         :B_ignoreheading:
-     :PROPERTIES:
-     :BEAMER_env: ignoreheading
-     :END:
-These slides are a companion for the video tutorial available at ...
+*** Video tutorial
+This document is a written companion for the video tutorial available at:
+
+#+begin_center
+http://toto
+#+end_center
+
 
 *** An opinionated tutorial?
 Some parts of this tutorial (e.g., replacing ~Flymake~ by ~Flycheck~ for syntax checking, or using ~company~ instead of other solutions for auto-completion) might be seen as quite opinionated. However, when several options or approaches were available for a given task, the most widespread and efficient (I hope!) was presented.
 
 If you prefer other approaches, or simply want to give a try to some other ones, the ESS manual remains the canonical and exhaustive documentation: http://ess.r-project.org/Manual/ess.html
 
-*** A word about ~use-package~
-In this document, several pieces of Emacs Lisp code will be proposed so that you can use them in your init file.
+Feedbacks, fixes and contributions are welcome, and can be addressed [[https://github.com/ess-intro/presentation-ess-customization/issues][through the Github repository]].
 
-It is assumed that you use [[https://jwiegley.github.io/use-package/][~use-package~]] for your init file: the Emacs Lisp code can be adapted in a straightforward manner if you do not use it.
+** A word about ~use-package~
+In this document, several pieces of Emacs Lisp code will be proposed so that you can use them in your init file. Because it will provide a more reproducible setup in the following steps, it is assumed that you use [[https://jwiegley.github.io/use-package/][~use-package~]] for your init file. The Emacs Lisp code can be adapted in a straightforward manner if you do not use it.
 
 As a reminder, this is the minimal code to add in your init file so as to use ~use-package~, once it has been installed:
 
@@ -102,8 +79,7 @@ As a reminder, this is the minimal code to add in your init file so as to use ~u
 #+end_src
 
 * ESS customization
-** Code evaluation
-*** Visibility of evaluation
+** Visibility of code evaluation
 From an R source file (i.e., an ESS[R] buffer), you can send code to the underlying R process with shortcuts like ~C-c C-b~ (~ess-eval-buffer~), ~C-RET~ (~ess-eval-region-or-line-and-step~), etc.
 
 In the inferior R process buffer, ESS can display either both the commands sent and their results, or only the results. The choice between the two can be made through the variable ~ess-eval-visibly~.
@@ -116,12 +92,7 @@ If you prefer to eval R code invisibly, add in your init file:
 (setq ess-eval-visibly nil)
 #+end_src
 
-** Syntactic highlighting
-*** Syntactic highlighting in ESS R source buffers
-    :PROPERTIES:
-    :BEAMER_opt: allowframebreaks,label=
-    :END:
-
+** Syntactic highlighting in ESS R source buffers
 By default, ESS highlights literals, assignments, source functions and reserved words. An example of default syntactic highlighting is as follows:
 
 #+NAME: fig-default-highlight
@@ -130,10 +101,6 @@ By default, ESS highlights literals, assignments, source functions and reserved 
 [[./images/highlight_default.png]]
 
 You can add more patterns to be highlighted, or remove some of them, by customizing the variable ~ess-R-font-lock-keywords~.
-
-#+begin_export latex
-\pagebreak
-#+end_export
 
 For instance, if you also want the numbers and the function calls to be highlighted:
 
@@ -179,10 +146,6 @@ To activate parenthesis matching in ESS[R] (source) buffers, add this to your in
 *** Navigating through matching parentheses
 Here are some convenient tricks for navigating through parenthetical groups (this can be useful when dealing with large paren groups, e.g. when developing a shiny UI):
 
-#+begin_export latex
-\small
-#+end_export
-
 #+CAPTION: Some useful shortcuts for dealing with parenthetical groups.
 |-----------+-----------------------------------------------------------------|
 | Shortcut  | ~Elisp function~ (Docstring)                                    |
@@ -192,10 +155,6 @@ Here are some convenient tricks for navigating through parenthetical groups (thi
 | ~C-M-SPC~ | ~mark-sexp~ (Set mark at the end of the paren group)            |
 | ~C-M-k~   | ~kill-sexp~ (Kill from point to end of paren group)             |
 |-----------+-----------------------------------------------------------------|
-
-#+begin_export latex
-\normalsize
-#+end_export
 
 For instance, when the point is over a closing parenthesis, ~C-M-p~ brings you to the matching opening parenthesis. Then, ~C-M-k~ kills to whole paren group.
 
@@ -217,10 +176,6 @@ To switch from ~Flymake~ to ~Flycheck~, you can add the following in your init f
 #+end_src
 
 *** On-the-fly syntax checking with ~Flycheck~
-    :PROPERTIES:
-    :BEAMER_opt: allowframebreaks,label=
-    :END:
-
 Using ~Flycheck~ with ESS first requires you to install the R package ~lintr~:
 
 #+begin_src R :eval no
@@ -235,23 +190,13 @@ devtools::install_github("jimhester/lintr")
 
 ~lintr~ is an R package that offers facilities for static code analysis. It integrates with the main IDEs and text editors (Emacs, Rstudio, vim, etc.). In particular, it has native support for ESS + ~Flycheck~.
 
-#+begin_export latex
-\pagebreak
-#+end_export
-
 Once both ~Flycheck~ and ~lintr~ are installed, your R code is analyzed "on-the-fly" while your are typing. Several checks are performed, including:
 - R code style: correct use of ~snake_case~, convenient spacing around all operators, etc.
 - undeclared variables in function body
 - bad use of ~=~ for variable assignment
 - unmatched parentheses
 
-The following screenshot (Fig. [[fig-lintr]]) gives some examples of such checks.
-
-To display all syntax error in a dedicated buffer, use =M-x flycheck-list-errors= (bound to =C-c ! l= by default).
-
-#+begin_export latex
-\pagebreak
-#+end_export
+The following screenshot (Fig. [[fig-lintr]]) gives some examples of such checks. To display all syntax error in a dedicated buffer, use =M-x flycheck-list-errors= (bound to =C-c ! l= by default).
 
 #+NAME: fig-lintr
 #+CAPTION: An example of syntax errors detected by ~lintr~ and displayed in a dedicated ~Flycheck~ buffer.
@@ -260,27 +205,20 @@ To display all syntax error in a dedicated buffer, use =M-x flycheck-list-errors
 
 ** Some more steps towards an R IDE
 *** Rdired buffer
-    :PROPERTIES:
-    :BEAMER_opt: allowframebreaks,label=
-    :END:
 [[http://ess.r-project.org/Manual/ess.html#Rdired][From the ESS manual:]]
 
 #+begin_quote
 "Ess-rdired provides a dired-like buffer for viewing, editing and plotting objects in your current R session. If you are used to using the dired (directory editor) facility in Emacs, this mode gives you similar functionality for R objects."
 #+end_quote
 
-All the R objects of the current R sessions are thus listed in the Rdired buffer, and it is possible to interact with them easily (~p~ for plotting an object, ~d~ for deleting it, etc.).
+All the R objects of the current R sessions are thus listed in the Rdired buffer, and it is possible to interact with them easily. For instance, type ~p~ for plotting an object, ~d~ for deleting it, etc.
 
-The following screenshot (Fig. [[fig-rdired]]) shows the contents of an Rdired buffer for the R session associated to a small piece of code.
+The screenshot in Figure [[fig-rdired]] shows the contents of an Rdired buffer for the R session associated to a small piece of code.
 
 #+NAME: fig-rdired
 #+CAPTION: An example of Rdired buffer (bottom window).
-#+ATTR_LATEX: :width 0.65 \textwidth
+#+ATTR_LATEX: :width 0.75 \textwidth
 [[./images/rdired.png]]
-
-#+begin_export latex
-\pagebreak
-#+end_export
 
 Rdired buffers can be triggered manually with =M-x ess-rdired=, which might not be really convenient in practice. With the following piece of Emacs Lisp code, you will be able to use ~F9~ for both opening and closing the Rdired buffer, so that you can consult and display it only when necessary:
 
@@ -296,29 +234,19 @@ Rdired buffers can be triggered manually with =M-x ess-rdired=, which might not 
 #+end_src
 
 *** Window management
-    :PROPERTIES:
-    :BEAMER_opt: allowframebreaks,label=
-    :END:
 Users coming from other R IDEs may be used to a given window (or /pane/) configuration, e.g.:
 - R source code window at the top left
 - R console (i.e., inferior R process) at the top right
 - Rdired environment window at the bottom left
 - R help window at the bottom right
 
-This is only an arbitrary example, but quite a reasonable one. You will find below a screenshot of such a window configuration, along with the corresponding Emacs Lisp code to add in your init file.
-
-#+begin_export latex
-\pagebreak
-#+end_export
+This is only an arbitrary example, but quite a reasonable one. You will find in Figure [[fig-window-config]] a screenshot of such a window configuration. The corresponding Emacs Lisp code to add in your init file follows.
 
 #+NAME: fig-window-config
 #+CAPTION: An example of window configuration: ESS as an R IDE.
-#+ATTR_LATEX: :width 0.96 \textwidth
+#+ATTR_LATEX: :width \textwidth
 [[./images/window_config.png]]
 
-#+begin_export latex
-\pagebreak
-#+end_export
 
 #+begin_src emacs-lisp :eval no
 ;; An example of window configuration:
@@ -342,15 +270,13 @@ This is only an arbitrary example, but quite a reasonable one. You will find bel
 	 (reusable-frames . nil))))
 #+end_src
 
-* Some useful Emacs packages
-** company
-*** Completion
-    :PROPERTIES:
-    :BEAMER_opt: allowframebreaks,label=
-    :END:
-As mentioned [[https://ess.r-project.org/Manual/ess.html#Completion][in the ESS manual]], there are several completion frameworks for writing R code with ESS. The Emacs package [[https://company-mode.github.io/][~company~]] is an elegant solution, which also supports many other programming languages.
+#+begin_export latex
+\pagebreak
+#+end_export
 
-Here is a minimal piece of Elisp code to add in your init file to install and load ~company~:
+* Some useful Emacs packages
+** Completion with company
+As mentioned [[https://ess.r-project.org/Manual/ess.html#Completion][in the ESS manual]], there are several completion frameworks for writing R code with ESS. The Emacs package [[https://company-mode.github.io/][~company~]] is an elegant solution, which also supports many other programming languages. Here is a minimal piece of Elisp code to add in your init file to install and load ~company~:
 
 #+begin_src emacs-lisp :eval no
 (use-package company
@@ -364,12 +290,10 @@ Here is a minimal piece of Elisp code to add in your init file to install and lo
 
 #+NAME: fig-company
 #+CAPTION: An example of code completion with ~company~: various candidates are proposed for the arguments of the function ~car::Anova()~.
-#+ATTR_LATEX: :width 0.72 \textwidth
+#+ATTR_LATEX: :width 0.64 \textwidth
 [[./images/company.png]]
 
-~company~ offers completion candidates in various contexts: function name, argument name within a function call (as in Fig. [[fig-company]]), object name.
-
-It may seem preferable to adopt a non-intrusive workflow. For functions or objects names, completion starts automatically after you type a few letters. For arguments names within a function call, it is suggested that you trigger manually the completion only when you need it. This can be done with ~M-x company-complete~, or more conveniently, by binding this function to a convenient shortcut. For example, to bind it to ~F12~, add the following to your init file:
+~company~ offers completion candidates in various contexts: function name, argument name within a function call (as in Fig. [[fig-company]]), object name. It may seem preferable to adopt a non-intrusive workflow. For functions or objects names, completion starts automatically after you type a few letters. For arguments names within a function call, it is suggested that you trigger manually the completion only when you need it. This can be done with ~M-x company-complete~, or more conveniently, by binding this function to a convenient shortcut. For example, to bind it to ~F12~, add the following to your init file:
 
 #+begin_src emacs-lisp :eval no
 ;; Use F12 to trigger manually completion on R function args:
@@ -397,11 +321,7 @@ Of course, further customization of ~company~ can be done in your init file. For
       company-tooltip-limit 10)
 #+end_src
 
-** company-quickhelp
-*** Documentation popups
-    :PROPERTIES:
-    :BEAMER_opt: allowframebreaks,label=
-    :END:
+** Documentation popups with company-quickhelp
 [[https://github.com/company-mode/company-quickhelp][~company-quickhelp~]] allows for documentation popups, e.g. to further describe function arguments.
 
 #+CAPTION: Documentation popups with ~company-quickhelp~.
@@ -422,19 +342,15 @@ The minimal elisp code to add to your init file is straightforward:
 
 By default, the documentation popup is shown automatically. You can adjust the time before the popup shows up by customizing the variable ~company-quickhelp-delay~.
 
-** yasnippet
-*** Code snippets
+** Code snippets with yasnippet
+*** Key features
 [[https://github.com/joaotavora/yasnippet][~yasnippet~]] is an Emacs package allowing for the expansion of whole pieces of code you often use (/snippets/) from one given abbreviation. 
 
-**** Key features of ~yasnippet~
 - All code snippets are stored as plain-text files in one given directory, so that they are easy to share with other people, and can be easily version controlled.
 - As a corollary, it is also easy to retrieve and use large collection of snippets already available online. For instance, Andrea Crotti maintains a great collection available at https://github.com/AndreaCrotti/yasnippet-snippets.
 - Although we only demonstrate its use within ESS and R here, note that ~yasnippet~ is not an R-specific solution, and that you can use it for any other programming language.
 
 *** Setting up ~yasnippet~
-    :PROPERTIES:
-    :BEAMER_opt: allowframebreaks,label=
-    :END:
 To set up ~yasnippet~, proceed through the following steps:
 
 1. Create a directory ~snippets/~ at some convenient location, and add a subfolder ~ess-r-mode/~ in this directory.
