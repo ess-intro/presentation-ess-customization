@@ -33,6 +33,7 @@
 #+LATEX_HEADER: %% Decalre new unicode characters for displaying trees:
 #+LATEX_HEADER: \DeclareUnicodeCharacter{2514}{\mbox{\kern.23em \vrule height2.2exdepth-1.8ptwidth.4pt\vrule height2.2ptdepth-1.8ptwidth.23em}}
 #+LATEX_HEADER: \DeclareUnicodeCharacter{2500}{\mbox{\vrule height2.2ptdepth-1.8ptwidth.5em}}
+#+PROPERTY: header-args:emacs-lisp :tangle ess-init.el
 
 * Introductory words
 ** A short tutorial for customizing ESS
