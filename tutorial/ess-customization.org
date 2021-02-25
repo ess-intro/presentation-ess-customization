@@ -119,7 +119,7 @@ For instance, if you also want the numbers and the function calls to be highligh
 	(ess-fl-keyword:operators)
 	(ess-fl-keyword:delimiters)
 	(ess-fl-keyword:=)
-	(ess-R-fl-keyword:F&T . t))))
+	(ess-R-fl-keyword:F&T . t)))
 #+end_src
 
 The same code is now highlighted differently, and maybe somewhat more clearly:
