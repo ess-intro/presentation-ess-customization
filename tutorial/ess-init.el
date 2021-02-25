@@ -6,9 +6,13 @@
 ;;
 ;;; Commentary:
 ;; Provides possible inspiration for customizing ESS (without any warranty).
-;; Should be adapted according to your own setup, in particular for yasnippet (l. 115).
+;; Should be adapted according to your own setup, in particular for yasnippet (l. 126).
 ;;
 ;;; Code:
+
+;; Early birds:
+(package-initialize)
+(setq inhibit-splash-screen t)
 
 ;; Make sure that use-package is installed:
 (unless (package-installed-p 'use-package)
@@ -17,6 +21,13 @@
 ;; Load use-package:
 (eval-when-compile
   (require 'use-package))
+
+;; Example of theme:
+(use-package solarized-theme
+  :ensure t
+  :config
+  (setq solarized-distinct-fringe-background t)
+  (load-theme 'solarized-light t))
 
 ;; Code visibility:
 (setq ess-eval-visibly 'nowait)
@@ -34,7 +45,7 @@
 	(ess-fl-keyword:operators)
 	(ess-fl-keyword:delimiters)
 	(ess-fl-keyword:=)
-	(ess-R-fl-keyword:F&T . t))))
+	(ess-R-fl-keyword:F&T . t)))
 
 ;; Activate global mode for parenthesis matching:
 (show-paren-mode)
