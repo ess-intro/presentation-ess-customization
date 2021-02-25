@@ -8,7 +8,11 @@
 - Showcasing some other Emacs packages that play well with ESS and may improve your coding experience
 
 ** Ressources
+*** Tutorial
 - [[https://github.com/ess-intro/presentation-ess-customization/blob/main/tutorial/ess-customization.org][Raw org file]]
 - [[https://github.com/ess-intro/presentation-ess-customization/blob/main/tutorial/ess-customization.pdf][Tutorial in PDF format]]
 - [[https://github.com/ess-intro/presentation-ess-customization/blob/main/tutorial/slides-ess-customization.pdf][Tutorial as beamer slides]] (superceded by the above PDF tutorial)
 - Video tutorial: soon.
+
+*** Emacs initialization file
+[[https://github.com/ess-intro/presentation-ess-customization/blob/main/tutorial/ess-init.el][A minimal init file]] for some possible customization of ESS is also provided. It should be adapted (in particular for ~yasnippet~) according to your own setup and habits.
