@@ -6,7 +6,7 @@
 ;;
 ;;; Commentary:
 ;; Provides possible inspiration for customizing ESS (without any warranty).
-;; Should be adapted according to your own setup, in particular for yasnippet (l. 126).
+;; Should be adapted according to your own setup, in particular for yasnippet (l. 127).
 ;;
 ;;; Code:
 

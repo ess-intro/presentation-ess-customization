@@ -15,4 +15,4 @@
 - Video tutorial: soon.
 
 *** Emacs initialization file
-[[https://github.com/ess-intro/presentation-ess-customization/blob/main/tutorial/ess-init.el][A minimal init file]] for some possible customization of ESS is also provided. It should be adapted [[https://github.com/ess-intro/presentation-ess-customization/blob/f368151a5d25fd23631f1210bf581ea2c23ea38f/tutorial/ess-init.el#L126][(in particular for ~yasnippet~)]] according to your own setup and habits.
+[[https://github.com/ess-intro/presentation-ess-customization/blob/main/tutorial/ess-init.el][A minimal init file]] for some possible customization of ESS is also provided. It should be adapted [[https://github.com/ess-intro/presentation-ess-customization/blob/4b4e388ce0b496b396d090f0121e3fb4785d640a/tutorial/ess-init.el#L127][(in particular for ~yasnippet~)]] according to your own setup and habits.
