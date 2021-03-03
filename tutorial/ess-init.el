@@ -13,6 +13,7 @@
 ;; Early birds:
 (package-initialize)
 (setq inhibit-splash-screen t)
+(global-display-line-numbers-mode)
 
 ;; Make sure that use-package is installed:
 (unless (package-installed-p 'use-package)
