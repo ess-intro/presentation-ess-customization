@@ -1,4 +1,4 @@
-% Created 2021-02-25 jeu. 11:07
+% Created 2021-03-31 mer. 09:27
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -51,7 +51,7 @@ formatcom = {\color{gray!97}}
  pdftitle={Customizing and extending Emacs Speaks Statistics},
  pdfkeywords={},
  pdfsubject={},
- pdfcreator={Emacs 27.1 (Org mode 9.4.4)}, 
+ pdfcreator={Emacs 27.1 (Org mode 9.4.5)}, 
  pdflang={English}}
 \begin{document}
 
@@ -60,19 +60,19 @@ formatcom = {\color{gray!97}}
 
 
 \section{Introductory words}
-\label{sec:org01f47bc}
+\label{sec:org795d064}
 \subsection{A short tutorial for customizing ESS}
-\label{sec:org38c3ffc}
+\label{sec:orgf7080c5}
 This document is a part of the ESS-Intro tutorial series. A full list of tutorials is available online at \url{https://github.com/ess-intro}.
 
 If you are are totally new to Emacs, you should probably begin with the tutorial ``\href{https://github.com/ess-intro/presentation-first-steps}{First steps with Emacs}'' by Dirk Eddelbuettel.
 
 \subsubsection{Target audience}
-\label{sec:org8ad5028}
+\label{sec:org45650b4}
 This tutorial is for R-users beginning to use Emacs Speaks Statistics (ESS). We only assume that you have mild familiarity with Emacs, and that you know how to customize Emacs by filling your \texttt{.emacs} or \texttt{init.el} file.
 
 \subsubsection{Goals}
-\label{sec:orgae3c8f9}
+\label{sec:orgec96ced}
 \begin{itemize}
 \item Helping newcomers and beginners to have a more friendly and efficient setup
 \item Helping users migrating from other IDEs to keep behaviours and habits they are used to
@@ -80,16 +80,16 @@ This tutorial is for R-users beginning to use Emacs Speaks Statistics (ESS). We 
 \end{itemize}
 
 \subsubsection{Video tutorial}
-\label{sec:org112b66c}
+\label{sec:org7d8cb0c}
 This document is a written companion for the video tutorial available at:
 
 \begin{center}
-\url{http://toto}
+\url{https://www.youtube.com/watch?v=Lf8qrLuvYp8}
 \end{center}
 
 
 \subsubsection{An opinionated tutorial?}
-\label{sec:org67ea909}
+\label{sec:orgaedb8ab}
 Some parts of this tutorial (e.g., replacing \texttt{Flymake} by \texttt{Flycheck} for syntax checking, or using \texttt{company} instead of other solutions for auto-completion) might be seen as quite opinionated. However, when several options or approaches were available for a given task, the most widespread and efficient (I hope!) was presented.
 
 If you prefer other approaches, or simply want to give a try to some other ones, the ESS manual remains the canonical and exhaustive documentation: \url{http://ess.r-project.org/Manual/ess.html}
@@ -97,7 +97,7 @@ If you prefer other approaches, or simply want to give a try to some other ones,
 Feedbacks, fixes and contributions are welcome, and can be addressed \href{https://github.com/ess-intro/presentation-ess-customization/issues}{through the Github repository}.
 
 \subsection{A word about \texttt{use-package}}
-\label{sec:org48c369a}
+\label{sec:org1e31867}
 In this document, several pieces of Emacs Lisp code will be proposed so that you can use them in your init file. Because it will provide a more reproducible setup in the following steps, it is assumed that you use \href{https://jwiegley.github.io/use-package/}{\texttt{use-package}} for your init file. The Emacs Lisp code can be adapted in a straightforward manner if you do not use it.
 
 As a reminder, this is the minimal code to add in your init file so as to use \texttt{use-package}, once it has been installed:
@@ -113,9 +113,9 @@ As a reminder, this is the minimal code to add in your init file so as to use \t
 \end{minted}
 
 \section{ESS customization}
-\label{sec:org3838954}
+\label{sec:org5c6aa43}
 \subsection{Visibility of code evaluation}
-\label{sec:orgbe9037b}
+\label{sec:org0cde447}
 From an R source file (i.e., an ESS[R] buffer), you can send code to the underlying R process with shortcuts like \texttt{C-c C-b} (\texttt{ess-eval-buffer}), \texttt{C-RET} (\texttt{ess-eval-region-or-line-and-step}), etc.
 
 In the inferior R process buffer, ESS can display either both the commands sent and their results, or only the results. The choice between the two can be made through the variable \texttt{ess-eval-visibly}.
@@ -129,13 +129,13 @@ If you prefer to eval R code invisibly, add in your init file:
 \end{minted}
 
 \subsection{Syntactic highlighting in ESS R source buffers}
-\label{sec:org3581de8}
+\label{sec:org8fa3961}
 By default, ESS highlights literals, assignments, source functions and reserved words. An example of default syntactic highlighting is as follows:
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.5 \textwidth]{./images/highlight_default.png}
-\caption{\label{fig:org60b5049}Default patterns for syntactic highlighting.}
+\caption{\label{fig:orgdc616d0}Default patterns for syntactic highlighting.}
 \end{figure}
 
 You can add more patterns to be highlighted, or remove some of them, by customizing the variable \texttt{ess-R-font-lock-keywords}.
@@ -164,13 +164,13 @@ The same code is now highlighted differently, and maybe somewhat more clearly:
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.55 \textwidth]{./images/highlight_custom.png}
-\caption{\label{fig:orgddb6ca3}More custom patterns for syntactic highlighting.}
+\caption{\label{fig:orgc94beae}More custom patterns for syntactic highlighting.}
 \end{figure}
 
 \subsection{Parenthesis matching}
-\label{sec:orga35b965}
+\label{sec:org8ef6990}
 \subsubsection{Seeing matching parentheses}
-\label{sec:org98180e4}
+\label{sec:org0c63349}
 Directly taken from the ESS manual (\url{http://ess.r-project.org/Manual/ess.html\#Parens}):
 
 \begin{quote}
@@ -185,7 +185,7 @@ To activate parenthesis matching in ESS[R] (source) buffers, add this to your in
 \end{minted}
 
 \subsubsection{Navigating through matching parentheses}
-\label{sec:org28c9199}
+\label{sec:org6b91289}
 Here are some convenient tricks for navigating through parenthetical groups (this can be useful when dealing with large paren groups, e.g. when developing a shiny UI):
 
 \begin{table}[htbp]
@@ -207,9 +207,9 @@ Shortcut & \texttt{Elisp function} (Docstring)\\
 For instance, when the point is over a closing parenthesis, \texttt{C-M-p} brings you to the matching opening parenthesis. Then, \texttt{C-M-k} kills to whole paren group.
 
 \subsection{Syntax checker}
-\label{sec:orgddd3478}
+\label{sec:org1595182}
 \subsubsection{Syntax checking: \texttt{Flycheck} vs. \texttt{Flymake}}
-\label{sec:org05b6c78}
+\label{sec:org20eddbe}
 ESS has facilities for on-the-fly syntax checking. Instead of using \texttt{Flymake}, which is the default choice, using \href{https://www.flycheck.org/en/latest/}{\texttt{Flycheck}} appears to be a better and more stable option. The \texttt{Flycheck} documentation allows for a comparison between those two packages:
 \url{https://www.flycheck.org/en/latest/user/flycheck-versus-flymake.html}
 
@@ -226,7 +226,7 @@ To switch from \texttt{Flymake} to \texttt{Flycheck}, you can add the following 
 \end{minted}
 
 \subsubsection{On-the-fly syntax checking with \texttt{Flycheck}}
-\label{sec:org41ed33e}
+\label{sec:orge85a15b}
 Using \texttt{Flycheck} with ESS first requires you to install the R package \texttt{lintr}:
 
 \begin{minted}[]{r}
@@ -249,18 +249,18 @@ Once both \texttt{Flycheck} and \texttt{lintr} are installed, your R code is ana
 \item unmatched parentheses
 \end{itemize}
 
-The following screenshot (Fig. \ref{fig:org4b9f253}) gives some examples of such checks. To display all syntax error in a dedicated buffer, use \texttt{M-x flycheck-list-errors} (bound to \texttt{C-c ! l} by default).
+The following screenshot (Fig. \ref{fig:org50cdeac}) gives some examples of such checks. To display all syntax error in a dedicated buffer, use \texttt{M-x flycheck-list-errors} (bound to \texttt{C-c ! l} by default).
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{./images/lintr.png}
-\caption{\label{fig:org4b9f253}An example of syntax errors detected by \texttt{lintr} and displayed in a dedicated \texttt{Flycheck} buffer.}
+\caption{\label{fig:org50cdeac}An example of syntax errors detected by \texttt{lintr} and displayed in a dedicated \texttt{Flycheck} buffer.}
 \end{figure}
 
 \subsection{Some more steps towards an R IDE}
-\label{sec:org75af747}
+\label{sec:org1fe77c0}
 \subsubsection{Rdired buffer}
-\label{sec:org14d0ebc}
+\label{sec:org7c0a814}
 \href{http://ess.r-project.org/Manual/ess.html\#Rdired}{From the ESS manual:}
 
 \begin{quote}
@@ -269,12 +269,12 @@ The following screenshot (Fig. \ref{fig:org4b9f253}) gives some examples of such
 
 All the R objects of the current R sessions are thus listed in the Rdired buffer, and it is possible to interact with them easily. For instance, type \texttt{p} for plotting an object, \texttt{d} for deleting it, etc.
 
-The screenshot in Figure \ref{fig:orgff7aa8b} shows the contents of an Rdired buffer for the R session associated to a small piece of code.
+The screenshot in Figure \ref{fig:org065fea9} shows the contents of an Rdired buffer for the R session associated to a small piece of code.
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.75 \textwidth]{./images/rdired.png}
-\caption{\label{fig:orgff7aa8b}An example of Rdired buffer (bottom window).}
+\caption{\label{fig:org065fea9}An example of Rdired buffer (bottom window).}
 \end{figure}
 
 Rdired buffers can be triggered manually with \texttt{M-x ess-rdired}, which might not be really convenient in practice. With the following piece of Emacs Lisp code, you will be able to use \texttt{F9} for both opening and closing the Rdired buffer, so that you can consult and display it only when necessary:
@@ -291,7 +291,7 @@ Rdired buffers can be triggered manually with \texttt{M-x ess-rdired}, which mig
 \end{minted}
 
 \subsubsection{Window management}
-\label{sec:org224d12c}
+\label{sec:orgb6fd085}
 Users coming from other R IDEs may be used to a given window (or \emph{pane}) configuration, e.g.:
 \begin{itemize}
 \item R source code window at the top left
@@ -300,12 +300,12 @@ Users coming from other R IDEs may be used to a given window (or \emph{pane}) co
 \item R help window at the bottom right
 \end{itemize}
 
-This is only an arbitrary example, but quite a reasonable one. You will find in Figure \ref{fig:orgda5106e} a screenshot of such a window configuration. The corresponding Emacs Lisp code to add in your init file follows.
+This is only an arbitrary example, but quite a reasonable one. You will find in Figure \ref{fig:orgf85260e} a screenshot of such a window configuration. The corresponding Emacs Lisp code to add in your init file follows.
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{./images/window_config.png}
-\caption{\label{fig:orgda5106e}An example of window configuration: ESS as an R IDE.}
+\caption{\label{fig:orgf85260e}An example of window configuration: ESS as an R IDE.}
 \end{figure}
 
 
@@ -334,9 +334,9 @@ This is only an arbitrary example, but quite a reasonable one. You will find in 
 \pagebreak
 
 \section{Some useful Emacs packages}
-\label{sec:org4208b38}
+\label{sec:orgfdb4589}
 \subsection{Completion with company}
-\label{sec:org5abf485}
+\label{sec:org22a5943}
 As mentioned \href{https://ess.r-project.org/Manual/ess.html\#Completion}{in the ESS manual}, there are several completion frameworks for writing R code with ESS. The Emacs package \href{https://company-mode.github.io/}{\texttt{company}} is an elegant solution, which also supports many other programming languages. Here is a minimal piece of Elisp code to add in your init file to install and load \texttt{company}:
 
 \begin{minted}[]{common-lisp}
@@ -352,10 +352,10 @@ As mentioned \href{https://ess.r-project.org/Manual/ess.html\#Completion}{in the
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.64 \textwidth]{./images/company.png}
-\caption{\label{fig:orgeb11286}An example of code completion with \texttt{company}: various candidates are proposed for the arguments of the function \texttt{car::Anova()}.}
+\caption{\label{fig:org7bf7e39}An example of code completion with \texttt{company}: various candidates are proposed for the arguments of the function \texttt{car::Anova()}.}
 \end{figure}
 
-\texttt{company} offers completion candidates in various contexts: function name, argument name within a function call (as in Fig. \ref{fig:orgeb11286}), object name. It may seem preferable to adopt a non-intrusive workflow. For functions or objects names, completion starts automatically after you type a few letters. For arguments names within a function call, it is suggested that you trigger manually the completion only when you need it. This can be done with \texttt{M-x company-complete}, or more conveniently, by binding this function to a convenient shortcut. For example, to bind it to \texttt{F12}, add the following to your init file:
+\texttt{company} offers completion candidates in various contexts: function name, argument name within a function call (as in Fig. \ref{fig:org7bf7e39}), object name. It may seem preferable to adopt a non-intrusive workflow. For functions or objects names, completion starts automatically after you type a few letters. For arguments names within a function call, it is suggested that you trigger manually the completion only when you need it. This can be done with \texttt{M-x company-complete}, or more conveniently, by binding this function to a convenient shortcut. For example, to bind it to \texttt{F12}, add the following to your init file:
 
 \begin{minted}[]{common-lisp}
 ;; Use F12 to trigger manually completion on R function args:
@@ -382,7 +382,7 @@ Of course, further customization of \texttt{company} can be done in your init fi
 \end{minted}
 
 \subsection{Documentation popups with company-quickhelp}
-\label{sec:org5777fd6}
+\label{sec:org1fac874}
 \href{https://github.com/company-mode/company-quickhelp}{\texttt{company-quickhelp}} allows for documentation popups, e.g. to further describe function arguments.
 
 \begin{figure}[htbp]
@@ -406,9 +406,9 @@ The minimal elisp code to add to your init file is straightforward:
 By default, the documentation popup is shown automatically. You can adjust the time before the popup shows up by customizing the variable \texttt{company-quickhelp-delay}.
 
 \subsection{Code snippets with yasnippet}
-\label{sec:org9fa23ba}
+\label{sec:org261b148}
 \subsubsection{Key features}
-\label{sec:orgf626078}
+\label{sec:org94d8013}
 \href{https://github.com/joaotavora/yasnippet}{\texttt{yasnippet}} is an Emacs package allowing for the expansion of whole pieces of code you often use (\emph{snippets}) from one given abbreviation. 
 
 \begin{itemize}
@@ -418,7 +418,7 @@ By default, the documentation popup is shown automatically. You can adjust the t
 \end{itemize}
 
 \subsubsection{Setting up \texttt{yasnippet}}
-\label{sec:orgc310081}
+\label{sec:orgfe8386b}
 To set up \texttt{yasnippet}, proceed through the following steps:
 
 \begin{enumerate}
@@ -457,7 +457,7 @@ Feel free to add or retrieve (a lot!) more snippets, i.e. to add more template f
 \end{enumerate}
 
 \subsubsection{Using \texttt{yasnippet} in an ESS[R] buffer}
-\label{sec:orgbe0d91a}
+\label{sec:orgcb772f3}
 While you are editing an R source file with ESS, each snippet can be triggered by typing its \texttt{key} and then pressing \texttt{TAB}. You can then navigate through the placeholders of the expanded template by pressing \texttt{TAB} again.
 
 For instance, with our previously defined snippet, typing \texttt{fun} followed by \texttt{TAB} will expand the full \texttt{function} template; you will then be able to specify easily a value for each of the three placeholders (the function's \texttt{name}, its \texttt{args} and \texttt{body}).

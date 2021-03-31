@@ -12,7 +12,7 @@
 - [[https://github.com/ess-intro/presentation-ess-customization/blob/main/tutorial/ess-customization.org][Raw org file]]
 - [[https://github.com/ess-intro/presentation-ess-customization/blob/main/tutorial/ess-customization.pdf][Tutorial in PDF format]]
 - [[https://github.com/ess-intro/presentation-ess-customization/blob/main/tutorial/slides-ess-customization.pdf][Tutorial as beamer slides]] (superceded by the above PDF tutorial)
-- Video tutorial: soon.
+- [[https://www.youtube.com/watch?v=Lf8qrLuvYp8][Video tutorial]]
 
 *** Emacs initialization file
 [[https://github.com/ess-intro/presentation-ess-customization/blob/main/tutorial/ess-init.el][A minimal init file]] for some possible customization of ESS is also provided. It should be adapted [[https://github.com/ess-intro/presentation-ess-customization/blob/4b4e388ce0b496b396d090f0121e3fb4785d640a/tutorial/ess-init.el#L127][(in particular for ~yasnippet~)]] according to your own setup and habits.

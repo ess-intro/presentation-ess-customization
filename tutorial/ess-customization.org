@@ -53,7 +53,7 @@ This tutorial is for R-users beginning to use Emacs Speaks Statistics (ESS). We 
 This document is a written companion for the video tutorial available at:
 
 #+begin_center
-http://toto
+https://www.youtube.com/watch?v=Lf8qrLuvYp8
 #+end_center
 
 
